@@ -9,7 +9,7 @@ export function AppLayout({ children }: AppLayoutProps) {
   return (
     <div className="min-h-screen antialiased bg-gray-100">
       <Header />
-      <main className="flex flex-1 flex-row pt-6">{children}</main>
+      <main className="flex flex-1 flex-row pt-24">{children}</main>
     </div>
   );
 }
