@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 
 export function Banner() {
   return (
-    <div className="relative w-screen h-[500px] pt-20 bg-cover bg-center" style={{ backgroundImage: "url('/banner.jpg')" }}>
+    <div className="relative w-full h-[500px] pt-20 bg-cover bg-center" style={{ backgroundImage: "url('/banner.jpg')" }}>
       <div className="absolute inset-0 bg-black opacity-65"></div>
 
       <div className="relative flex flex-col items-center justify-center w-full h-full px-6 sm:px-16 lg:px-32">

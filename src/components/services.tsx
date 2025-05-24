@@ -32,7 +32,7 @@ const services = [
 
 export function Services() {
   return (
-    <div className="relative w-full mt-24 bg-cover bg-center" style={{ backgroundImage: "url('/services.png')" }}>
+    <div id="#services" className="relative w-full mt-24 bg-cover bg-center" style={{ backgroundImage: "url('/services.png')" }}>
       <div className="absolute inset-0 bg-gray-900 opacity-90"></div>
       <div className="relative p-10 md:p-20 flex flex-col items-center text-center text-white w-full max-w-7xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-bold mb-12">Serviços</h1>
