@@ -1,5 +1,7 @@
 import { AboutMe } from "@/components/about-me"
 import { Banner } from "@/components/banner"
+import { Contact } from "@/components/Contact"
+import { Footer } from "@/components/Footer"
 import { Projects } from "@/components/projects"
 import { Services } from "@/components/services"
 import { Technologies } from "@/components/technologies"
@@ -12,6 +14,8 @@ export default function Home() {
      <Services />
      <Technologies />
      <Projects />
+     <Contact />
+     <Footer />
     </div>
   )
 }
