@@ -18,7 +18,7 @@ export default function App({
   pageProps
 }: AppProps) {
   return (
-    <div className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <div className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
       <AppLayout>
         <Component {...pageProps} />
       </AppLayout>

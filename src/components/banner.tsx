@@ -1,32 +1,59 @@
-import Image from "next/image";
+"use client";
+
 import { Button } from "./ui/button";
+import { motion } from "motion/react";
 
 export function Banner() {
   return (
-    <div className="relative w-full h-[500px] pt-20 bg-cover bg-center" style={{ backgroundImage: "url('/banner.jpg')" }}>
-      <div className="absolute inset-0 bg-black opacity-65"></div>
+    <section
+      id="home"
+      className="relative w-full h-[500px] sm:h-[600px] bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: "url('/banner.jpg')" }}
+    >
 
-      <div className="relative flex flex-col items-center justify-center w-full h-full px-6 sm:px-16 lg:px-32">
-        <div className="flex flex-col items-center gap-4 sm:gap-5">
-          <h1 className="font-bold text-4xl sm:text-5xl md:text-6xl text-white leading-tight text-center">
-            Anderson Fernandes
-          </h1>
-          <div className="w-24 sm:w-36 h-2 bg-purple-700 rounded-full" />
-        </div>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/70" />
 
-        <div className="mt-8 sm:mt-12 flex flex-col gap-6 sm:gap-7 items-center">
-          <span className="w-64 sm:w-80 h-16 text-center p-4 rounded-sm bg-white text-2xl bg-opacity-80 text-purple-500">
-            I'm a Web Developer
-          </span>
+      {/* Conteúdo */}
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 sm:px-12">
+        <motion.h1
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-white font-extrabold text-4xl sm:text-5xl md:text-6xl leading-tight"
+        >
+          Anderson Fernandes
+        </motion.h1>
 
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: "6rem" }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="mt-3 h-1 bg-purple-600 rounded-full"
+        />
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
+          className="mt-6 text-lg sm:text-xl bg-white/10 px-4 py-3 rounded shadow-md backdrop-blur-md text-purple-200">
+          Desenvolvedor Web Full Stack
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+          className="mt-8"
+        >
           <Button
             variant="outline"
-            className="w-44 sm:w-52 h-12 text-lg font-bold text-purple-400 border-purple-500 hover:bg-purple-500 hover:text-white hover:border-none transition-all duration-300"
+            className="w-44 sm:w-52 h-12 text-lg font-semibold text-purple-400 border-purple-500 hover:bg-purple-600 hover:text-white transition-all duration-300"
           >
             Entre em contato
           </Button>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 }

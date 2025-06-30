@@ -3,62 +3,32 @@ import Link from "next/link";
 
 export function Header() {
   return (
-      <header className="fixed top-0 left-0 w-full z-50 bg-[var(--background)] opacity-80 shadow-md mx-auto px-4 md:px-6 lg:px-8 flex h-12 shrink-0 items-center">
-        <div className="mr-auto flex gap-8">
-          <Link 
-            href="#" 
-            className="group inline-flex h-9 w-max items-center justify-center gap-2 rounded-md px-4 py-2 text-lg text-white transition-colors
-            focus:bg-gray-100 focus:text-gray-900 focus:outline-none"
-          >
-           <House size={18} /> 
-           Home
+    <header
+      className="fixed top-0 left-0 w-full z-50 bg-gray-900/80 backdrop-blur-lg shadow-md"
+      role="navigation"
+    >
+      <div className="mx-auto flex max-w-7xl items-center h-16 px-4 md:px-6 lg:px-8">
+        <nav className="flex gap-4 md:gap-6 text-sm font-medium text-white">
+          <Link href="#home" className="flex items-center gap-1 hover:underline">
+            <House size={18} /> Home
           </Link>
-
-          <Link 
-            href="#about" 
-            className="group inline-flex h-9 w-max items-center justify-center gap-2 rounded-md px-4 py-2 text-lg text-white transition-colors
-            focus:bg-gray-100 focus:text-gray-900 focus:outline-none"
-          >
-           <User size={18} /> 
-           Sobre
+          <Link href="#about" className="flex items-center gap-1 hover:underline">
+            <User size={18} /> Sobre
           </Link>
-
-          <Link 
-            href="#service" 
-            className="group inline-flex h-9 w-max items-center justify-center gap-2 rounded-md px-4 py-2 text-lg text-white transition-colors
-            focus:bg-gray-100 focus:text-gray-900 focus:outline-none"
-          >
-           <Wrench size={18} /> 
-           Serviços
+          <Link href="#service" className="flex items-center gap-1 hover:underline">
+            <Wrench size={18} /> Serviços
           </Link>
-
-          <Link 
-            href="#" 
-            className="group inline-flex h-9 w-max items-center justify-center gap-2 rounded-md px-4 py-2 text-lg text-white transition-colors
-            focus:bg-gray-100 focus:text-gray-900 focus:outline-none"
-          >
-           <BracketsAngle size={18} /> 
-           Tecnologias
+          <Link href="#technologies" className="flex items-center gap-1 hover:underline">
+            <BracketsAngle size={18} /> Tecnologias
           </Link>
-
-          <Link 
-            href="#" 
-            className="group inline-flex h-9 w-max items-center justify-center gap-2 rounded-md px-4 py-2 text-lg text-white transition-colors
-            focus:bg-gray-100 focus:text-gray-900 focus:outline-none"
-          >
-           <Browser size={18} /> 
-           Projetos
+          <Link href="#projects" className="flex items-center gap-1 hover:underline">
+            <Browser size={18} /> Projetos
           </Link>
-
-          <Link 
-            href="#" 
-            className="group inline-flex h-9 w-max items-center justify-center gap-2 rounded-md px-4 py-2 text-lg text-white transition-colors
-            focus:bg-gray-100 focus:text-gray-900 focus:outline-none"
-          >
-           <DeviceMobile size={18} /> 
-           Contato
+          <Link href="#contact" className="flex items-center gap-1 hover:underline">
+            <DeviceMobile size={18} /> Contato
           </Link>
-        </div>
-      </header>
-  )
+        </nav>
+      </div>
+    </header>
+  );
 }

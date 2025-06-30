@@ -8,7 +8,7 @@ import { Technologies } from "@/components/technologies"
 
 export default function Home() {
   return (
-    <div className="w-full">
+    <main className="w-full">
      <Banner />
      <AboutMe />
      <Services />
@@ -16,6 +16,6 @@ export default function Home() {
      <Projects />
      <Contact />
      <Footer />
-    </div>
+    </main>
   )
 }
