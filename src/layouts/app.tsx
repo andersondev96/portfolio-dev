@@ -7,7 +7,7 @@ type AppLayoutProps = {
 
 export function AppLayout({ children }: AppLayoutProps) {
   return (
-    <div className="min-h-screen antialiased bg-gray-100 text-gray-900">
+    <div className="min-h-screen antialiased bg-background text-foreground">
       <Header />
       <main className="w-full">{children}</main>
     </div>

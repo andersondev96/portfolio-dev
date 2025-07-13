@@ -1,52 +1,60 @@
-import Image from "next/image";
-import Link from "next/link";
+'use client'
 
+import Image from "next/image";
 import { motion } from "motion/react";
+import { useState } from "react";
+import { ResumeModal } from "./resume-modal";
 
 export function AboutMe() {
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
   return (
-    <motion.div
-      id="#about"
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1, ease: "easeOut" }}
-      className="mt-10 md:mt-16 sm:mt-20 pl-8 md:pl-12 sm:pl-16 flex flex-col md:flex-row items-center md:gap-4 md:p-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 w-full max-w-5xl">
-        <div className="relative w-full h-[220px] md:h-[250px]">
-          <Image
-            src="/images/image1.jpg"
-            alt=""
-            layout="fill"
-            className="object-cover rounded-md border-2 border-gray-500"
-            style={{ objectPosition: '0% 25%' }}
-          />
+    <section id="about" className="w-full py-20">
+      <ResumeModal isOpen={isOpenModal} onClose={() => setIsOpenModal(false)} />
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        viewport={{ once: true }}
+        className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12"
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 flex-1">
+          {[1, 2].map((index) => (
+            <div
+              key={index}
+              className="relative w-full h-64 sm:h-72 rounded-xl overflow-hidden group transition-transform duration-300 transform hover:scale-[1.02] hover:shadow-[0_0_40px_15px_rgba(168,85,247,0.3)]"
+            >
+              <Image
+                src={`/images/image${index}.jpg`}
+                alt={`Imagem ${index}`}
+                fill
+                sizes="(max-width: 640px) 100vw, 50vw"
+                className="object-cover object-[25%_25%] transition-all duration-300"
+              />
+            </div>
+
+
+          ))}
         </div>
-        <div className="relative w-full h-[220px] md:h-[250px]">
-          <Image
-            src="/images/image2.jpg"
-            alt=""
-            layout="fill"
-            className="object-cover rounded-md border-2 border-gray-500"
-            style={{ objectPosition: '25% 25%' }}
-          />
+
+        <div className="flex-1 text-center md:text-left">
+          <h1 className="text-4xl md:text-5xl font-bold text-white">Sobre mim</h1>
+          <p className="mt-6 text-lg md:text-xl text-gray-200 leading-relaxed">
+            Sou Desenvolvedor Web especializado em <strong>JavaScript, Node.js e React</strong>, com mais de 5 anos de experiência e formação em Sistemas de Informação.
+            Apaixonado pela criação de interfaces dinâmicas e responsivas com React e pelo desenvolvimento de servidores back-end escaláveis e rápidos com Node.js.
+            Minha abordagem está centrada no usuário, combinando metodologias ágeis e aprendizado contínuo para entregar soluções de alta qualidade.
+          </p>
+
+          <div className="mt-6">
+            <button
+              onClick={() => setIsOpenModal(true)}
+              className="inline-block px-6 py-3 rounded-xl text-white bg-purple-600 hover:bg-purple-500 transition-colors text-lg font-semibold shadow-md"
+            >
+              Ver currículo
+            </button>
+          </div>
         </div>
-      </div>
-      <div className="mt-8 md:mt-0 md:ml-16 text-center md:text-left w-full max-w-3xl">
-        <h1 className="text-3xl md:text-5xl font-semibold">Sobre mim</h1>
-        <p className="mt-4 text-lg md:text-xl leading-relaxed text-gray-50">
-          Sou Desenvolvedor Web especializado em Javascript, Node.js e React, com mais de 5 anos de experiência e formação em Sistemas de Informação.
-          Apaixonado pela criação de interfaces dinâmicas e responsivas com React e pelo desenvolvimento de servidores back-end escaláveis e rápidos com
-          Node.js. Minha abordagem está centrada no usuário, combinando metodologias ágeis e aprendizado contínuo para entregar soluções de alta qualidade.
-        </p>
-        <div className="mt-6 text-center md:text-left">
-          <Link
-            href="#"
-            className="inline-block text-xl text-purple-500 font-semibold border-b-2 border-purple-500 hover:text-purple-400"
-          >
-            Ver currículo
-          </Link>
-        </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </section>
   );
 }
