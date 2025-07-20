@@ -1,123 +1,77 @@
-import Image from "next/image";
+'use client'
+
+import { motion } from 'motion/react'
+import Image from 'next/image'
+
+const technologies = [
+  { name: 'JavaScript', icon: '/icons/javascript.svg', experience: '5+ anos', description: 'Desenvolvimento de aplicações web interativas e dinâmicas.' },
+  { name: 'TypeScript', icon: '/icons/typescript.svg', experience: '5+ anos', description: 'Desenvolvimento de aplicações web escaláveis e de fácil manutenção.' },
+  { name: 'Git', icon: '/icons/git.svg', experience: '5+ anos', description: 'Controle de versão e colaboração em projetos de software.' },
+  { name: 'React', icon: '/icons/react.svg', experience: '4+ anos', description: 'Construção de interfaces de usuário modernas e responsivas.' },
+  { name: 'Node.js', icon: '/icons/nodejs.svg', experience: '4+ anos', description: 'Desenvolvimento de APIs e aplicações web em tempo real.' },
+  { name: 'PHP', icon: '/icons/php.svg', experience: '3+ anos', description: 'Desenvolvimento de aplicações web dinâmicas e sistemas de gerenciamento de conteúdo.' },
+  { name: 'Python', icon: '/icons/python.svg', experience: '2+ anos', description: 'Desenvolvimento de scripts e automação de tarefas.' },
+  { name: 'Next.js', icon: '/icons/nextjs.svg', experience: '2+ anos', description: 'Desenvolvimento de aplicações web com renderização do lado do servidor.' },
+  { name: 'TailwindCSS', icon: '/icons/tailwindcss.svg', experience: '2+ anos', description: 'Criação de layouts responsivos e estilização de componentes.' },
+  { name: 'Docker', icon: '/icons/docker.svg', experience: '2+ anos', description: 'Containerização de aplicações e gerenciamento de ambientes.' },
+]
 
 export function Technologies() {
   return (
-    <div className="flex flex-col md:mt-20 md:p-4">
+    <section
+      id="technologies"
+      className="w-full py-20 bg-gradient-to-b from-[#121217] to-[#1a1c23] text-white"
+    >
+      <div className="max-w-7xl mx-auto px-6 text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-5xl font-extrabold mb-12"
+        >
+          Tecnologias
+        </motion.h2>
 
-      <div className="flex ">
-        <Image
-          src="/images/robo1.png"
-          alt="Imagem de um robô"
-          width={478}
-          height={478}
-          className="opacity-20"
-        />
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 justify-items-center">
+          {technologies.map((tech, index) => (
+            <motion.div
+              key={tech.name}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="flex flex-col items-center gap-4 p-4 rounded-xl bg-[#1f1f28] hover:shadow-[0_0_20px_5px_rgba(168,85,247,0.25)] transition-shadow"
+            >
+              <div className="relative z-10 flex flex-col items-center gap-2 p-4 bg-[#1f1f28] rounded-xl">
+                <div className="group relative">
+                  <Image
+                    src={tech.icon}
+                    alt={tech.name}
+                    width={64}
+                    height={64}
+                    className="object-contain"
+                  />
+                  <span className="absolute top-full left-1/2 -translate-x-1/2 mb-2 
+                      px-3 py-2 bg-zinc-900 text-white text-xs rounded shadow-lg
+                      z-50 opacity-0 group-hover:opacity-100 transition
+                      max-w-xs break-words whitespace-normal text-center"
+                  >
+                    {tech.description}
+                  </span>
+                </div>
 
-        <div className="flex flex-col w-full items-center">
-          <h1 className="text-3xl md:text-5xl font-semibold">Tecnologias</h1>
-          <div className="grid grid-cols-3 gap-10 mt-20">
-
-            <div className="flex items-center justify-center w-28 h-28 bg-purple-500 rounded-md hover:text-orange-500 text-gray-900 transition-colors duration-300">
-
-              <svg viewBox="0 0 128 128" className="size-24">
-                <path fill="currentColor" d="M19.037 113.876L9.032 1.661h109.936l-10.016 112.198-45.019 12.48z"></path>
-                <path fill="currentColor" d="M64 116.8l36.378-10.086 8.559-95.878H64z"></path>
-                <path fill="#EBEBEB" d="M64 52.455H45.788L44.53 38.361H64V24.599H29.489l.33 3.692 3.382 37.927H64zm0 35.743l-.061.017-15.327-4.14-.979-10.975H33.816l1.928 21.609 28.193 7.826.063-.017z"></path>
-                <path fill="#fff" d="M63.952 52.455v13.763h16.947l-1.597 17.849-15.35 4.143v14.319l28.215-7.82.207-2.325 3.234-36.233.335-3.696h-3.708zm0-27.856v13.762h33.244l.276-3.092.628-6.978.329-3.692z"></path>
-              </svg>
-
-            </div>
-
-            <div className="flex items-center justify-center w-28 h-28 bg-purple-500 rounded-md hover:text-sky-600 text-gray-900 transition-colors duration-300">
-
-              <svg viewBox="0 0 128 128" className="size-24">
-                <path fill="currentColor" d="M18.814 114.123L8.76 1.352h110.48l-10.064 112.754-45.243 12.543-45.119-12.526z"></path>
-                <path fill="currentColor" d="M64.001 117.062l36.559-10.136 8.601-96.354h-45.16v106.49z"></path>
-                <path fill="#fff" d="M64.001 51.429h18.302l1.264-14.163H64.001V23.435h34.682l-.332 3.711-3.4 38.114h-30.95V51.429z"></path>
-                <path fill="#EBEBEB" d="M64.083 87.349l-.061.018-15.403-4.159-.985-11.031H33.752l1.937 21.717 28.331 7.863.063-.018v-14.39z"></path>
-                <path fill="#fff" d="M81.127 64.675l-1.666 18.522-15.426 4.164v14.39l28.354-7.858.208-2.337 2.406-26.881H81.127z"></path>
-                <path fill="#EBEBEB" d="M64.048 23.435v13.831H30.64l-.277-3.108-.63-7.012-.331-3.711h34.646zm-.047 27.996v13.831H48.792l-.277-3.108-.631-7.012-.33-3.711h16.447z"></path>
-              </svg>
-
-            </div>
-
-            <div className="flex items-center justify-center w-28 h-28 bg-purple-500 rounded-md hover:text-sky-400 text-gray-900 transition-colors duration-30">
-              <svg viewBox="0 0 128 128" className="size-24">
-                <g fill="currentColor"><circle cx="64" cy="64" r="11.4"></circle><path d="M107.3 45.2c-2.2-.8-4.5-1.6-6.9-2.3.6-2.4 1.1-4.8 1.5-7.1 2.1-13.2-.2-22.5-6.6-26.1-1.9-1.1-4-1.6-6.4-1.6-7 0-15.9 5.2-24.9 13.9-9-8.7-17.9-13.9-24.9-13.9-2.4 0-4.5.5-6.4 1.6-6.4 3.7-8.7 13-6.6 26.1.4 2.3.9 4.7 1.5 7.1-2.4.7-4.7 1.4-6.9 2.3C8.2 50 1.4 56.6 1.4 64s6.9 14 19.3 18.8c2.2.8 4.5 1.6 6.9 2.3-.6 2.4-1.1 4.8-1.5 7.1-2.1 13.2.2 22.5 6.6 26.1 1.9 1.1 4 1.6 6.4 1.6 7.1 0 16-5.2 24.9-13.9 9 8.7 17.9 13.9 24.9 13.9 2.4 0 4.5-.5 6.4-1.6 6.4-3.7 8.7-13 6.6-26.1-.4-2.3-.9-4.7-1.5-7.1 2.4-.7 4.7-1.4 6.9-2.3 12.5-4.8 19.3-11.4 19.3-18.8s-6.8-14-19.3-18.8zM92.5 14.7c4.1 2.4 5.5 9.8 3.8 20.3-.3 2.1-.8 4.3-1.4 6.6-5.2-1.2-10.7-2-16.5-2.5-3.4-4.8-6.9-9.1-10.4-13 7.4-7.3 14.9-12.3 21-12.3 1.3 0 2.5.3 3.5.9zM81.3 74c-1.8 3.2-3.9 6.4-6.1 9.6-3.7.3-7.4.4-11.2.4-3.9 0-7.6-.1-11.2-.4-2.2-3.2-4.2-6.4-6-9.6-1.9-3.3-3.7-6.7-5.3-10 1.6-3.3 3.4-6.7 5.3-10 1.8-3.2 3.9-6.4 6.1-9.6 3.7-.3 7.4-.4 11.2-.4 3.9 0 7.6.1 11.2.4 2.2 3.2 4.2 6.4 6 9.6 1.9 3.3 3.7 6.7 5.3 10-1.7 3.3-3.4 6.6-5.3 10zm8.3-3.3c1.5 3.5 2.7 6.9 3.8 10.3-3.4.8-7 1.4-10.8 1.9 1.2-1.9 2.5-3.9 3.6-6 1.2-2.1 2.3-4.2 3.4-6.2zM64 97.8c-2.4-2.6-4.7-5.4-6.9-8.3 2.3.1 4.6.2 6.9.2 2.3 0 4.6-.1 6.9-.2-2.2 2.9-4.5 5.7-6.9 8.3zm-18.6-15c-3.8-.5-7.4-1.1-10.8-1.9 1.1-3.3 2.3-6.8 3.8-10.3 1.1 2 2.2 4.1 3.4 6.1 1.2 2.2 2.4 4.1 3.6 6.1zm-7-25.5c-1.5-3.5-2.7-6.9-3.8-10.3 3.4-.8 7-1.4 10.8-1.9-1.2 1.9-2.5 3.9-3.6 6-1.2 2.1-2.3 4.2-3.4 6.2zM64 30.2c2.4 2.6 4.7 5.4 6.9 8.3-2.3-.1-4.6-.2-6.9-.2-2.3 0-4.6.1-6.9.2 2.2-2.9 4.5-5.7 6.9-8.3zm22.2 21l-3.6-6c3.8.5 7.4 1.1 10.8 1.9-1.1 3.3-2.3 6.8-3.8 10.3-1.1-2.1-2.2-4.2-3.4-6.2zM31.7 35c-1.7-10.5-.3-17.9 3.8-20.3 1-.6 2.2-.9 3.5-.9 6 0 13.5 4.9 21 12.3-3.5 3.8-7 8.2-10.4 13-5.8.5-11.3 1.4-16.5 2.5-.6-2.3-1-4.5-1.4-6.6zM7 64c0-4.7 5.7-9.7 15.7-13.4 2-.8 4.2-1.5 6.4-2.1 1.6 5 3.6 10.3 6 15.6-2.4 5.3-4.5 10.5-6 15.5C15.3 75.6 7 69.6 7 64zm28.5 49.3c-4.1-2.4-5.5-9.8-3.8-20.3.3-2.1.8-4.3 1.4-6.6 5.2 1.2 10.7 2 16.5 2.5 3.4 4.8 6.9 9.1 10.4 13-7.4 7.3-14.9 12.3-21 12.3-1.3 0-2.5-.3-3.5-.9zM96.3 93c1.7 10.5.3 17.9-3.8 20.3-1 .6-2.2.9-3.5.9-6 0-13.5-4.9-21-12.3 3.5-3.8 7-8.2 10.4-13 5.8-.5 11.3-1.4 16.5-2.5.6 2.3 1 4.5 1.4 6.6zm9-15.6c-2 .8-4.2 1.5-6.4 2.1-1.6-5-3.6-10.3-6-15.6 2.4-5.3 4.5-10.5 6-15.5 13.8 4 22.1 10 22.1 15.6 0 4.7-5.8 9.7-15.7 13.4z"></path></g>
-              </svg>
-            </div>
-
-
-            <div className="relative flex items-center justify-center w-28 h-28 bg-purple-500 rounded-md group transition-colors duration-300">
-              <svg
-                viewBox="0 0 128 128"
-                className="absolute size-24 text-gray-900 transition-opacity duration-300 opacity-100 group-hover:opacity-0"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M66.958.825a6.07 6.07 0 0 0-6.035 0L11.103 29.76c-1.895 1.072-2.96 3.095-2.96 5.24v57.988c0 2.143 1.183 4.167 2.958 5.24l49.82 28.934a6.07 6.07 0 0 0 6.036 0l49.82-28.935c1.894-1.072 2.958-3.096 2.958-5.24V35c0-2.144-1.183-4.167-2.958-5.24z" />
-              </svg>
-
-              <svg
-                viewBox="0 0 128 128"
-                className="absolute size-24 transition-opacity duration-300 opacity-0 group-hover:opacity-100"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M66.958.825a6.07 6.07 0 0 0-6.035 0L11.103 29.76c-1.895 1.072-2.96 3.095-2.96 5.24v57.988c0 2.143 1.183 4.167 2.958 5.24l49.82 28.934a6.07 6.07 0 0 0 6.036 0l49.82-28.935c1.894-1.072 2.958-3.096 2.958-5.24V35c0-2.144-1.183-4.167-2.958-5.24z" fill="url(#a)" />
-                <path fill="url(#b)" d="M116.897 29.76 66.841.825A8.161 8.161 0 0 0 65.302.23L9.21 96.798a6.251 6.251 0 0 0 1.657 1.43l50.057 28.934c1.42.833 3.076 1.072 4.615.595l52.66-96.925a3.702 3.702 0 0 0-1.302-1.072z" />
-                <path fill="url(#c)" d="M116.898 98.225c1.42-.833 2.485-2.262 2.958-3.81L65.066.108c-1.42-.238-2.959-.119-4.26.715L11.104 29.639l53.606 98.355c.71-.12 1.54-.358 2.25-.715z" />
-                <defs>
-                  <linearGradient id="a" x1="34.513" x2="27.157" y1="15.535" y2="30.448" gradientTransform="translate(-129.242 -73.715) scale(6.18523)" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#3F873F" />
-                    <stop offset=".33" stopColor="#3F8B3D" />
-                    <stop offset=".637" stopColor="#3E9638" />
-                    <stop offset=".934" stopColor="#3DA92E" />
-                    <stop offset="1" stopColor="#3DAE2B" />
-                  </linearGradient>
-                  <linearGradient id="b" x1="30.009" x2="50.533" y1="23.359" y2="8.288" gradientTransform="translate(-129.242 -73.715) scale(6.18523)" gradientUnits="userSpaceOnUse">
-                    <stop offset=".138" stopColor="#3F873F" />
-                    <stop offset=".402" stopColor="#52A044" />
-                    <stop offset=".713" stopColor="#64B749" />
-                    <stop offset=".908" stopColor="#6ABF4B" />
-                  </linearGradient>
-                  <linearGradient id="c" x1="21.917" x2="40.555" y1="22.261" y2="22.261" gradientTransform="translate(-129.242 -73.715) scale(6.18523)" gradientUnits="userSpaceOnUse">
-                    <stop offset=".092" stopColor="#6ABF4B" />
-                    <stop offset=".287" stopColor="#64B749" />
-                    <stop offset=".598" stopColor="#52A044" />
-                    <stop offset=".862" stopColor="#3F873F" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-
-
-            <div className="flex items-center justify-center w-28 h-28 bg-purple-500 rounded-md hover:text-yellow-400 text-gray-900 transition-colors duration-30">
-
-              <svg viewBox="0 0 128 128" className="size-24">
-                <path fill="currentColor" d="M1.408 1.408h125.184v125.185H1.408z"></path>
-                <path fill="#FFFFFF" d="M116.347 96.736c-.917-5.711-4.641-10.508-15.672-14.981-3.832-1.761-8.104-3.022-9.377-5.926-.452-1.69-.512-2.642-.226-3.665.821-3.32 4.784-4.355 7.925-3.403 2.023.678 3.938 2.237 5.093 4.724 5.402-3.498 5.391-3.475 9.163-5.879-1.381-2.141-2.118-3.129-3.022-4.045-3.249-3.629-7.676-5.498-14.756-5.355l-3.688.477c-3.534.893-6.902 2.748-8.877 5.235-5.926 6.724-4.236 18.492 2.975 23.335 7.104 5.332 17.54 6.545 18.873 11.531 1.297 6.104-4.486 8.08-10.234 7.378-4.236-.881-6.592-3.034-9.139-6.949-4.688 2.713-4.688 2.713-9.508 5.485 1.143 2.499 2.344 3.63 4.26 5.795 9.068 9.198 31.76 8.746 35.83-5.176.165-.478 1.261-3.666.38-8.581zM69.462 58.943H57.753l-.048 30.272c0 6.438.333 12.34-.714 14.149-1.713 3.558-6.152 3.117-8.175 2.427-2.059-1.012-3.106-2.451-4.319-4.485-.333-.584-.583-1.036-.667-1.071l-9.52 5.83c1.583 3.249 3.915 6.069 6.902 7.901 4.462 2.678 10.459 3.499 16.731 2.059 4.082-1.189 7.604-3.652 9.448-7.401 2.666-4.915 2.094-10.864 2.07-17.444.06-10.735.001-21.468.001-32.237z"></path>
-              </svg>
-
-            </div>
-
-            <div className="flex items-center justify-center w-28 h-28 bg-purple-500 rounded-md hover:text-red-500 text-gray-900 transition-colors duration-30">
-
-              <svg viewBox="0 0 128 128" className="size-24">
-                <path fill="currentColor" d="M27.271.11c-.2.078-5.82 3.28-12.487 7.112-8.078 4.644-12.227 7.09-12.449 7.32-.19.225-.34.482-.438.76-.167.564-.179 82.985-.01 83.578.061.23.26.568.44.754.436.46 48.664 28.19 49.25 28.324.272.065.577.054.88-.03.658-.165 48.76-27.834 49.188-28.286.175-.195.375-.532.44-.761.084-.273.115-4.58.115-13.655v-13.26l11.726-6.735c11.056-6.357 11.733-6.755 12.017-7.191l.29-.47V43.287c0-15.548.03-14.673-.585-15.235-.165-.146-5.798-3.433-12.53-7.31L100.89 13.71h-1.359l-11.963 6.87c-6.586 3.788-12.184 7.027-12.457 7.203-.272.18-.597.512-.73.753l-.242.417-.054 13.455-.048 13.46-9.879 5.69c-5.434 3.124-9.957 5.71-10.053 5.734-.175.049-.187-1.232-.187-25.966V15.293l-.26-.447c-.326-.545 1.136.324-13.544-8.114C27.803-.348 28.098-.2 27.27.11zm11.317 10.307c5.15 2.955 9.364 5.4 9.364 5.43 0 .031-4.516 2.641-10.035 5.813l-10.041 5.765-10.023-5.764c-5.507-3.173-10.02-5.783-10.02-5.814 0-.03 4.505-2.64 10.013-5.805l9.999-5.752.69.376c3.357 1.907 6.708 3.824 10.053 5.751zm71.668 13.261c5.422 3.122 9.908 5.702 9.95 5.744.114.103-19.774 11.535-20.046 11.523-.272-.008-19.915-11.335-19.907-11.473.01-.157 19.773-11.527 19.973-11.496.091.022 4.607 2.59 10.03 5.702zM16.3 25.328l9.558 5.503.055 27.247.05 27.252.233.368c.122.194.352.459.52.581.158.115 5.477 3.146 11.818 6.724l11.52 6.506v11.527c0 6.326-.043 11.516-.097 11.516-.041 0-10-5.699-22.124-12.676L5.793 97.201l-.03-38.966-.019-38.954.49.271c.283.15 4.807 2.748 10.065 5.775zm33.754 19.18v25.109l-.387.253c-.525.332-19.667 11.335-19.732 11.335-.03 0-.054-11.336-.054-25.193l.012-25.182 10-5.752c5.499-3.165 10.034-5.733 10.088-5.714.039.024.073 11.34.073 25.144zm38.15-5.775 10.023 5.763V55.92c0 10.838-.011 11.42-.176 11.357-.107-.041-4.642-2.64-10.083-5.774l-9.91-5.69v-11.42c0-6.287.032-11.424.062-11.424.043 0 4.577 2.592 10.084 5.764zm34.164 5.587c0 6.254-.042 11.412-.084 11.462-.072.115-19.896 11.538-20.022 11.538-.031 0-.062-5.135-.062-11.423v-11.42l10-5.756c5.507-3.16 10.042-5.752 10.084-5.752.053 0 .084 5.105.084 11.351zM95.993 70.933 52.005 96.04 32.056 84.693S76 59.277 76.176 59.343zm2.215 14.827-.034 11.442-22.028 12.676c-12.12 6.976-22.082 12.675-22.132 12.675-.053 0-.095-4.658-.095-11.516V99.51l22.08-12.592c12.132-6.923 22.101-12.59 22.154-12.602.043 0 .062 5.148.054 11.443z"></path>
-              </svg>
-
-            </div>
-          </div>
+              </div>
+              <span className="text-sm text-gray-300 font-medium">
+                {tech.name}
+              </span>
+              <span className="text-xs text-purple-400 bg-purple-950 px-2 py-0.5 rounded-full">
+                {tech.experience}
+              </span>
+            </motion.div>
+          ))}
         </div>
-
-        <Image
-          src="/images/robo2.png"
-          alt="Imagem de um robô"
-          width={478}
-          height={478}
-          className="opacity-20"
-        />
       </div>
-    </div>
+    </section>
   )
 }

@@ -36,7 +36,7 @@ export function Services() {
   return (
     <section
       id="services"
-      className="relative w-full mt-24 bg-cover bg-center"
+      className="relative w-full bg-cover bg-center"
       style={{ backgroundImage: "url('/services.png')" }}
       aria-label="Serviços oferecidos"
     >

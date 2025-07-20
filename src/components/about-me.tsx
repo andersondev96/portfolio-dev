@@ -10,7 +10,7 @@ export function AboutMe() {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   return (
-    <section id="about" className="w-full py-16 bg-gradient-to-b from-[#1a1c23] to-[#121217]">
+    <section id="about" className="w-full pt-16 pb-8 bg-gradient-to-b from-[#1a1c23] to-[#121217]">
       <ResumeModal isOpen={isOpenModal} onClose={() => setIsOpenModal(false)} />
 
       <motion.div
