@@ -2,6 +2,18 @@
 
 import Image from "next/image"
 import { motion } from "motion/react"
+import { useState } from "react"
+import { ProjectModal } from "./project-modal"
+
+type Project = {
+  title: string,
+  description: string,
+  url: string,
+  github_repo: string,
+  image: string,
+  badges: string[],
+  technologies: { name: string, icon: string }[],
+}
 
 const projects = [
   {
@@ -61,9 +73,10 @@ const projects = [
 ]
 
 export function Projects() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+
   return (
     <>
-      {/* Transição suave entre tecnologias e projetos */}
       <div className="w-full overflow-hidden -mb-20">
         <svg
           className="block w-full h-20 text-[#121217]"
@@ -97,18 +110,18 @@ export function Projects() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-12 justify-center">
             {projects.map((project, index) => (
               <motion.div
-                key={project.title}
+              key={project.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.15, duration: 0.6 }}
                 viewport={{ once: true }}
                 className="bg-[#1f1f28] p-6 rounded-3xl shadow-xl group hover:shadow-[0_0_30px_8px_rgba(168,85,247,0.3)] hover:scale-[1.04] transition-transform duration-300"
-              >
-                <a
-                  href={project.github_repo}
-                  target="_blank"
+                >
+                  
+                <div
+                  onClick={() => setSelectedProject(project)}
                   rel="noopener noreferrer"
-                  className="block overflow-hidden rounded-2xl"
+                  className="block overflow-hidden rounded-2xl cursor-pointer"
                   aria-label={`Repositório GitHub do projeto ${project.title}`}
                 >
                   <Image
@@ -118,7 +131,7 @@ export function Projects() {
                     height={300}
                     className="rounded-2xl object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                </a>
+                </div>
                 <div className="flex flex-col mt-4">
                   <span className="text-xl font-semibold text-purple-400">{project.title}</span>
                   <p className="text-gray-300 mt-2">{project.description}</p>
@@ -157,6 +170,14 @@ export function Projects() {
           </div>
         </div>
       </section>
+
+      {selectedProject && (
+        <ProjectModal 
+          isOpen={!!selectedProject}
+          onClose={() => setSelectedProject(null)}
+          project={selectedProject}
+        />
+      )}
     </>
   )
 }
