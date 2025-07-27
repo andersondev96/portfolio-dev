@@ -36,11 +36,10 @@ export function Services() {
   return (
     <section
       id="services"
-      className="relative w-full bg-cover bg-center"
-      style={{ backgroundImage: "url('/services.png')" }}
+      className="relative w-full bg-gradient-to-b from-[#191a20] to-[#1e1f29] bg-cover bg-center"
       aria-label="Serviços oferecidos"
     >
-      <div className="absolute inset-0 bg-gray-900 opacity-90"></div>
+
       <div className="relative max-w-7xl mx-auto px-6 md:px-12 py-16 flex flex-col items-center text-center text-white">
         <h2 className="text-4xl md:text-5xl font-extrabold mb-16 drop-shadow-lg">
           Serviços
@@ -81,11 +80,11 @@ export function Services() {
                   </CardContent>
                 </div>
               </Card>
-
             </motion.div>
           ))}
         </div>
       </div>
     </section>
+
   )
 }

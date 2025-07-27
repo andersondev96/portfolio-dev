@@ -1,4 +1,5 @@
 import { BracketsAngle, Browser, DeviceMobile, House, User, Wrench } from "@phosphor-icons/react";
+import { Briefcase, GraduationCap } from "lucide-react";
 import Link from "next/link";
 
 export function Header() {
@@ -15,7 +16,13 @@ export function Header() {
           <Link href="#about" className="flex items-center gap-1 hover:underline">
             <User size={18} /> Sobre
           </Link>
-          <Link href="#service" className="flex items-center gap-1 hover:underline">
+          <Link href="#experiences" className="flex items-center gap-1 hover:underline">
+            <Briefcase size={18} /> Experiências
+          </Link>
+          <Link href="#formations" className="flex items-center gap-1 hover:underline">
+            <GraduationCap size={18} /> Formações
+          </Link>
+          <Link href="#services" className="flex items-center gap-1 hover:underline">
             <Wrench size={18} /> Serviços
           </Link>
           <Link href="#technologies" className="flex items-center gap-1 hover:underline">
