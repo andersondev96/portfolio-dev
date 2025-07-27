@@ -1,46 +1,45 @@
+'use client'
+
 import { Envelope, GithubLogo, InstagramLogo, LinkedinLogo, XLogo } from "@phosphor-icons/react";
+import { motion } from "motion/react"
 
 export function Contact() {
   return (
-    <div className="w-full p-16 bg-neutral-600">
-      <div className="flex flex-col max-w-full">
-        <h1 className="text-5xl text-center uppercase">Entre em contato</h1>
-        <div className="flex flex-col items-center">
+    <section id="contact" className="w-full py-20 bg-gradient-to-b from-[#1a1c23] to-[#121217] text-white">
+      <div className="max-w-4xl mx-auto px-6 text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-5xl font-extrabold mb-12">
+          Entre em contato
+        </motion.h2>
 
-          <form className="mt-20 flex flex-col">
-            <div className="flex flex-col">
-              <textarea
-                className="w-[739px] h-[269px] p-5 rounded-md outline-none focus:border-200 focus:border-purple-700"
-                placeholder="Digite a sua mensagem"
-              />
-              <div className="flex flex-row w-full items-end">
-                <button className="mt-6 w-[168px] h-[70px] bg-[#2AB06F] rounded-sm hover:opacity-90">
-                <span className="text-2xl">Enviar</span>
-              </button>
-              </div>
-            </div>
-          </form>
-          
-          <div className="flex gap-2 mt-16">
-            <div className="p-4 size-16 rounded-sm bg-[#2A2828] hover:opacity-95">
-              <Envelope size={36} className="text-purple-500" />
-            </div>
-            <div className="p-4 size-16 rounded-sm bg-[#2A2828] hover:opacity-95">
-              <InstagramLogo size={36} className="text-purple-500" />
-            </div>
-            <div className="p-4 size-16 rounded-sm bg-[#2A2828] hover:opacity-95">
-              <XLogo size={36} className="text-purple-500" />
-            </div>
-            <div className="p-4 size-16 rounded-sm bg-[#2A2828] hover:opacity-95">
-              <LinkedinLogo size={36} className="text-purple-500" />
-            </div>
-            <div className="p-4 size-16 rounded-sm bg-[#2A2828] hover:opacity-95">
-              <GithubLogo size={36} className="text-purple-500" />
-            </div>
-          </div>
+        <form className="flex flex-col gap-6 items-center">
+          <textarea
+            className="w-full h-48 p-4 rounded-xl bg-[#1f1f28] text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
+            placeholder="Digite a sua mensagem"
+          />
+          <button
+            type="submit"
+            className="px-8 py-4 bg-purple-600 rounded-xl text-white text-lg hover:bg-purple-500 transition">
+            Enviar
+          </button>
+        </form>
 
+        <div className="flex justify-center gap-4 mt-12">
+          {[Envelope, InstagramLogo, XLogo, LinkedinLogo, GithubLogo].map((Icon, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.2 }}
+              className="p-4 rounded-full bg-[#1f1f28] hover:shadow-[0_0_10px_4px_rgba(168,85,247,0.2)] translation"
+            >
+              <Icon size={28} className="text-purple-500" />
+            </motion.div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   )
 }
