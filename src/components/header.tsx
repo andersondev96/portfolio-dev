@@ -1,16 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { BracketsAngle, Browser, DeviceMobile, House, User, Wrench, GraduationCap, Briefcase } from "@phosphor-icons/react";
-import Link from "next/link";
 
 const sections = [
-  "#home",
-  "#about",
-  "#experiences",
-  "#formations",
-  "#services",
-  "#technologies",
-  "#projects",
-  "#contact",
+  { id: "#home", label: "Home", icon: House },
+  { id: "#about", label: "Sobre", icon: User },
+  { id: "#experiences", label: "Experiências", icon: Briefcase },
+  { id: "#formations", label: "Formações", icon: GraduationCap },
+  { id: "#services", label: "Serviços", icon: Wrench },
+  { id: "#technologies", label: "Tecnologias", icon: BracketsAngle },
+  { id: "#projects", label: "Projetos", icon: Browser },
+  { id: "#contact", label: "Contato", icon: DeviceMobile },
 ];
 
 export function Header() {
@@ -24,14 +23,14 @@ export function Header() {
       debounceTimeout.current = setTimeout(() => {
         let currentSection = "#home"; // padrão
 
-        for (const sectionId of sections) {
-          const section = document.querySelector(sectionId);
-          if (!section) continue;
+        for (const section of sections) {
+          const element = document.querySelector(section.id);
+          if (!element) continue;
 
-          const rect = section.getBoundingClientRect();
+          const rect = element.getBoundingClientRect();
 
           if (rect.top <= 150) {
-            currentSection = sectionId;
+            currentSection = section.id;
           }
         }
 
@@ -50,12 +49,13 @@ export function Header() {
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("hashchange", onHashChange);
+      if (debounceTimeout.current) clearTimeout(debounceTimeout.current)
     };
   }, []);
 
   function linkClass(hash: string) {
     const baseClass = "flex items-center gap-1 hover:underline";
-    const activeClass = "underline font-bold text-yellow-400";
+    const activeClass = "underline font-bold text-purple-400";
     return hash === activeHash ? `${baseClass} ${activeClass}` : baseClass;
   }
 
@@ -66,8 +66,8 @@ export function Header() {
       const yOffset = -60
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset
       window.scrollTo({ top: y, behavior: "smooth" })
-    history.pushState(null, "", hash)
-    setActiveHash(hash)
+      history.pushState(null, "", hash)
+      setActiveHash(hash)
     }
   }
 
@@ -78,30 +78,16 @@ export function Header() {
     >
       <div className="mx-auto flex max-w-7xl items-center h-16 px-4 md:px-6 lg:px-8">
         <nav className="flex gap-4 md:gap-6 text-sm font-medium text-white">
-          {sections.map((sectionId) => {
-            let Icon;
-            switch (sectionId) {
-              case "#home": Icon = House; break;
-              case "#about": Icon = User; break;
-              case "#experiences": Icon = Briefcase; break;
-              case "#formations": Icon = GraduationCap; break;
-              case "#services": Icon = Wrench; break;
-              case "#technologies": Icon = BracketsAngle; break;
-              case "#projects": Icon = Browser; break;
-              case "#contact": Icon = DeviceMobile; break;
-              default: Icon = House;
-            }
-            return (
-              <a
-                key={sectionId}
-                href={sectionId}
-                onClick={(e) => handleLinkClick(e, sectionId)}
-                className={linkClass(sectionId)}
-              >
-                <Icon size={18} /> {sectionId.replace("#", "").charAt(0).toUpperCase() + sectionId.slice(2)}
-              </a>
-            );
-          })}
+          {sections.map(({ id, label, icon: Icon }) => (
+            <a
+              key={id}
+              href={id}
+              onClick={(e) => handleLinkClick(e, id)}
+              className={linkClass(id)}
+            >
+              <Icon size={18} /> {label}
+            </a>
+          ))}
         </nav>
       </div>
     </header>

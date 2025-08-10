@@ -2,6 +2,8 @@ import type { AppProps } from "next/app";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import { AppLayout } from "@/layouts/app";
+import { BackToTopButton } from "@/components/BackToTopButton";
+import Head from "next/head";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,10 +20,17 @@ export default function App({
   pageProps
 }: AppProps) {
   return (
-    <div className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
-      <AppLayout>
-        <Component {...pageProps} />
-      </AppLayout>
-    </div>
+    <>
+      <Head>
+        <title>Portfolio - Anderson Fernandes</title>
+        <meta name="description" content="Portfolio pessoal do Anderson Fernandes, desenvolvedor web Full Stack." />
+      </Head>
+      <div className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
+        <AppLayout>
+          <Component {...pageProps} />
+          <BackToTopButton />
+        </AppLayout>
+      </div>
+    </>
   );
 }

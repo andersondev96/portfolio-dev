@@ -10,6 +10,9 @@ import { Technologies } from "@/components/technologies"
 
 export default function Home() {
   return (
+    <>
+    <title>Portfolio - Anderson Fernandes </title>
+    <meta name="description" content="Portfolio de Anderson Fernandes, desenvolvedor Web" />
     <main className="w-full">
      <Banner />
      <AboutMe />
@@ -21,5 +24,6 @@ export default function Home() {
      <Contact />
      <Footer />
     </main>
+    </>
   )
 }

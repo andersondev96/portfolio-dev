@@ -3,6 +3,7 @@
 import { Button } from "./ui/button";
 import { motion } from "framer-motion";
 import { TechBackground } from "./TechBackground";
+import Head from "next/head";
 
 export function Banner() {
   return (
