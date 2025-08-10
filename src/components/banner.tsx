@@ -1,26 +1,31 @@
 "use client";
 
 import { Button } from "./ui/button";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
+import { TechBackground } from "./TechBackground";
 
 export function Banner() {
   return (
     <section
       id="home"
-      className="relative w-full h-[500px] sm:h-[600px] bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/banner.jpg')" }}
+      className="relative w-full h-[500px] sm:h-[600px] overflow-hidden flex items-center justify-center text-center"
     >
+      {/* Fundo gradiente animado */}
+      <div className="absolute inset-0 bg-gradient-to-r from-purple-800 via-indigo-700 to-purple-800 animate-gradient bg-[length:400%_400%]" />
+
+      {/* Canvas com símbolos tech */}
+      <TechBackground />
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/70" />
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px]" />
 
       {/* Conteúdo */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 sm:px-12">
+      <div className="relative z-10 flex flex-col items-center px-6 sm:px-12">
         <motion.h1
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-white font-extrabold text-4xl sm:text-5xl md:text-6xl leading-tight"
+          className="text-white font-extrabold text-4xl sm:text-5xl md:text-6xl leading-tight drop-shadow-lg"
         >
           Anderson Fernandes
         </motion.h1>
@@ -29,14 +34,15 @@ export function Banner() {
           initial={{ width: 0 }}
           animate={{ width: "6rem" }}
           transition={{ delay: 0.4, duration: 0.5 }}
-          className="mt-3 h-1 bg-purple-600 rounded-full"
+          className="mt-3 h-1 bg-purple-400 rounded-full shadow-lg"
         />
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-6 text-lg sm:text-xl bg-white/10 px-4 py-3 rounded shadow-md backdrop-blur-md text-purple-200">
+          className="mt-6 text-lg sm:text-xl bg-white/10 px-5 py-3 rounded-xl shadow-md backdrop-blur-sm text-purple-100 max-w-xl"
+        >
           Desenvolvedor Web Full Stack
         </motion.p>
 
@@ -48,7 +54,7 @@ export function Banner() {
         >
           <Button
             variant="outline"
-            className="w-44 sm:w-52 h-12 text-lg font-semibold text-purple-400 border-purple-500 hover:bg-purple-600 hover:text-white transition-all duration-300"
+            className="w-44 sm:w-52 h-12 text-lg font-semibold text-purple-300 border-purple-400 hover:bg-purple-500 hover:text-white hover:border-purple-500 transition-all duration-300 shadow-lg"
           >
             Entre em contato
           </Button>
