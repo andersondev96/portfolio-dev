@@ -17,9 +17,10 @@ type ExperienceCardProps = {
   description: string
   period: string
   roles: Role[]
+  defaultOpen?: number[]
 }
 
-export function ExperienceCard({ company, description, period, roles }: ExperienceCardProps) {
+export function ExperienceCard({ company, description, period, roles, defaultOpen }: ExperienceCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -37,7 +38,7 @@ export function ExperienceCard({ company, description, period, roles }: Experien
         </CardHeader>
 
         <CardContent className="p-0">
-          <Accordion.Root type="multiple" className="space-y-3">
+          <Accordion.Root type="multiple" className="space-y-3" defaultValue={defaultOpen?.map((i) => `item-${i}`) || []}>
             {roles.map((role, index) => (
               <CustomAccordionItem
                 key={index}

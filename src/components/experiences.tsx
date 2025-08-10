@@ -30,6 +30,7 @@ export function Experiences() {
                 ]
               }
             ]}
+            defaultOpen={[0]}
           />
 
           <ExperienceCard
@@ -48,6 +49,7 @@ export function Experiences() {
                 ]
               }
             ]}
+            defaultOpen={[0]}
           />
 
           <ExperienceCard
@@ -103,6 +105,7 @@ export function Experiences() {
                 ]
               }
             ]}
+            defaultOpen={[0]}
           />
         </div>
       </div>
