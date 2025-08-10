@@ -10,7 +10,7 @@ const Card = React.forwardRef<
     role="region"
     tabIndex={0}
     className={cn(
-      "rounded-2xl border border-gray-700 bg-gray-900 text-gray-100 shadow-lg transition-shadow hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-purple-500",
+      "rounded-2xl border border-gray-700 bg-gray-900 text-gray-100 shadow-lg transition-shadow hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-gray-500",
       className
     )}
     {...props}

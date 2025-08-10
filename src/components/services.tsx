@@ -56,7 +56,7 @@ export function Services() {
               whileTap={{ scale: 0.95 }}
               className="cursor-pointer h-full"
             >
-              <Card className="flex h-full min-h-[320px] flex-col md:flex-row items-center gap-6 p-6 bg-purple-800 border-none text-white shadow-xl rounded-3xl hover:shadow-purple-600/50 transition-shadow duration-300">
+              <Card className="flex flex-col h-full gap-6 p-6 bg-gray-800 text-white shadow-xl rounded-3xl hover:shadow-gray-600/50 transition-shadow duration-300">
                 <Image
                   src={service.image}
                   alt={service.title}
@@ -67,13 +67,13 @@ export function Services() {
                 />
 
                 <div className="flex flex-col flex-1 gap-4 text-center md:text-left">
-                  <CardHeader className="p-0">
+                  <CardHeader className="p-0 space-y-2">
                     <CardTitle className="text-2xl font-semibold truncate whitespace-nowrap overflow-hidden">
                       {service.title}
                     </CardTitle>
                   </CardHeader>
 
-                  <CardContent className="p-0">
+                  <CardContent className="p-0 space-y-4 text-left">
                     <p className="text-sm leading-relaxed text-gray-200">
                       {service.description}
                     </p>

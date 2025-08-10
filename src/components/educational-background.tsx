@@ -81,7 +81,7 @@ const courses: Course[] = [
 export function EducationalBackground() {
   return (
     <section
-      id="experiences"
+      id="formations"
       className="relative w-full bg-gradient-to-b from-[#191a20] to-[#1e1f29] bg-cover bg-center"
       aria-label="educational-background"
     >
