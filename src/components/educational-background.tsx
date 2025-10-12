@@ -57,7 +57,7 @@ const courses: Course[] = [
       "Inteligência Artificial",
       "Engenharia de dados",
     ],
-    certificateUrl: "#",
+    certificateUrl: "/diploma.pdf",
   },
   {
     logo: "/logos/senac.png",
