@@ -69,6 +69,34 @@ const projects = [
       { name: 'TypeScript', icon: '/icons/typescript.svg' },
       { name: 'React Router', icon: '/icons/react-router.svg' },
     ]
+  },
+  {
+    title: 'Book Wise',
+    description: 'Plataforma para recomendações de livros e avaliações de leitores ',
+    url: '',
+    github_repo: 'https://github.com/andersondev96/ignite-book-wise',
+    image: '',
+    badges: ['web', 'reactjs', 'nextjs'],
+    technologies: [
+      { name: 'React.js', icon: '/icons/react.svg' },
+      { name: 'TypeScript', icon: '/icons/typescript.svg' },
+      { name: 'Next.js', icon: '/icons/nextjs.svg' },
+    ]
+  },
+  {
+    title: 'Project In Bio',
+    description: 'Micro SaaS para criação do portfolio',
+    url: 'https://micro-saas-rocketseat-project-in-bi.vercel.app',
+    github_repo: 'https://github.com/andersondev96/micro-saas-rocketseat-project-in-bio',
+    image: '/images/projectinbio.png',
+    badges: ['web', 'saas', 'reactjs', 'nextjs', 'stripe', 'tailwind'],
+    technologies: [
+      { name: 'React.js', icon: '/icons/react.svg' },
+      { name: 'TypeScript', icon: '/icons/typescript.svg' },
+      { name: 'Next.js', icon: '/icons/nextjs.svg' },
+     { name: 'TailwindCSS', icon: '/icons/tailwindcss.svg' },
+     { name: "Stripe", icon: '/icons/stripe.svg'}
+    ]
   }
 ]
 

@@ -3,9 +3,15 @@
 import { Button } from "./ui/button";
 import { motion } from "framer-motion";
 import { TechBackground } from "./TechBackground";
-import Head from "next/head";
 
 export function Banner() {
+  function scrollToContact() {
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
   return (
     <section
       id="home"
@@ -56,6 +62,7 @@ export function Banner() {
           <Button
             variant="outline"
             className="w-44 sm:w-52 h-12 text-lg font-semibold text-purple-300 border-purple-400 hover:bg-purple-500 hover:text-white hover:border-purple-500 transition-all duration-300 shadow-lg"
+            onClick={scrollToContact}
           >
             Entre em contato
           </Button>
