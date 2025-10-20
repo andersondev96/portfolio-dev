@@ -2,6 +2,7 @@
 
 import { Envelope, GithubLogo, InstagramLogo, LinkedinLogo, XLogo } from "@phosphor-icons/react";
 import { motion } from "motion/react"
+import type { FormEvent } from "react";
 
 export function Contact() {
   const socialLinks = [
@@ -11,6 +12,27 @@ export function Contact() {
     {title: "LinkedIn", icon: LinkedinLogo, url: "https://www.linkedin.com/in/anderson-fernandes96"},
     {title: "Github", "icon": GithubLogo, url: "https://github.com/andersondev96"}
   ]
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    try {
+      e.preventDefault()
+      const formData = new FormData(e.currentTarget)
+      const name = formData.get("name")
+      const email = formData.get("email")
+      const message = formData.get("message")
+      
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      })
+
+      alert("Mensagem enviada com sucesso!")
+    } catch (error) {
+      console.error(error);
+    }
+
+  }
 
   return (
     <section id="contact" className="w-full py-20 bg-gradient-to-b from-[#1a1c23] to-[#121217] text-white">
@@ -24,8 +46,24 @@ export function Contact() {
           Entre em contato
         </motion.h2>
 
-        <form className="flex flex-col gap-6 items-center">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6 items-center">
+          <input
+            type="text"
+            name="name"
+            placeholder="Seu nome"
+            className="w-full p-3 rounded-xl bg-[#1f1f28] text-white"
+            required   
+          />
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Seu e-mail"
+            className="w-full p-3 rounded-xl bg-[#1f1f28] text-white"
+            required   
+          />
           <textarea
+            name="message"
             className="w-full h-48 p-4 rounded-xl bg-[#1f1f28] text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
             placeholder="Digite a sua mensagem"
           />
