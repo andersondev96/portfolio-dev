@@ -70,7 +70,7 @@ export function AboutMe() {
                 alt={`Imagem ${index}`}
                 fill
                 sizes="(max-width: 640px) 100vw, 50vw"
-                className="object-cover object-[35%_60%] group-hover:scale-110 transition-transform duration-500"
+                className="object-cover object-center group-hover:scale-110 transition-transform duration-500"
                 priority={index === 1}
               />
               {/* Overlay gradient */}
