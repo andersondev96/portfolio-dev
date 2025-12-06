@@ -5,9 +5,10 @@ import { cn } from "@/lib/utils";
 type ResumeModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  modalType: string;
 }
 
-export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
+export function ResumeModal({ isOpen, onClose, modalType }: ResumeModalProps) {
   return (
     <Dialog.Root open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <Dialog.Portal>
