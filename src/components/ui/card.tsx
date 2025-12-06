@@ -7,10 +7,9 @@ const Card = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    role="region"
-    tabIndex={0}
+    role="article"
     className={cn(
-      "rounded-2xl border border-gray-700 bg-gray-900 text-gray-100 shadow-lg transition-shadow hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-gray-500",
+      "rounded-2xl border border-gray-700 bg-gray-900 text-gray-100 shadow-lg transition-all duration-300",
       className
     )}
     {...props}
@@ -24,7 +23,7 @@ const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <header
     ref={ref}
-    className={cn("flex flex-col space-y-2 px-6 pt-6", className)}
+    className={cn("flex flex-col space-y-3", className)}
     {...props}
   />
 ));
@@ -37,7 +36,7 @@ const CardTitle = React.forwardRef<
   <h3
     ref={ref}
     className={cn(
-      "text-xl font-semibold leading-tight tracking-wide text-purple-300",
+      "text-xl md:text-2xl font-semibold leading-tight tracking-wide text-purple-300",
       className
     )}
     {...props}
@@ -63,7 +62,7 @@ const CardContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <section
     ref={ref}
-    className={cn("px-6 py-4", className)}
+    className={cn("", className)}
     {...props}
   />
 ));
@@ -76,7 +75,7 @@ const CardFooter = React.forwardRef<
   <footer
     ref={ref}
     className={cn(
-      "flex items-center justify-end px-6 py-4 border-t border-gray-700",
+      "flex items-center justify-end py-4 border-t border-gray-700 pt-4",
       className
     )}
     {...props}
