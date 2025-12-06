@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import {
-  BracketsAngleIcon,
   BrowserIcon,
   DeviceMobileIcon,
   HouseIcon,
   UserIcon,
-  WrenchIcon,
+  CodeIcon,
   GraduationCapIcon,
   BriefcaseIcon,
   ListIcon,
-  XIcon
+  XIcon,
+  StackIcon,
 } from "@phosphor-icons/react";
 
 const sections = [
@@ -17,8 +17,8 @@ const sections = [
   { id: "#about", label: "Sobre", icon: UserIcon },
   { id: "#experiences", label: "Experiências", icon: BriefcaseIcon },
   { id: "#formations", label: "Formações", icon: GraduationCapIcon },
-  { id: "#services", label: "Serviços", icon: WrenchIcon },
-  { id: "#technologies", label: "Tecnologias", icon: BracketsAngleIcon },
+  { id: "#services", label: "Serviços", icon: CodeIcon },
+  { id: "#technologies", label: "Tecnologias", icon: StackIcon },
   { id: "#projects", label: "Projetos", icon: BrowserIcon },
   { id: "#contact", label: "Contato", icon: DeviceMobileIcon },
 ];
