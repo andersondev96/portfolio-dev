@@ -50,7 +50,7 @@ export function AboutMe() {
         viewport={{ once: true, amount: 0.2 }}
         className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start"
       >
-        {/* Imagens */}
+
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -63,26 +63,25 @@ export function AboutMe() {
               key={index}
               whileHover={{ scale: 1.04, y: -8 }}
               transition={{ duration: 0.3 }}
-              className="relative w-full h-64 sm:h-80 rounded-2xl overflow-hidden group cursor-pointer"
+              className="relative w-full h-80 sm:h-96 rounded-2xl overflow-hidden group cursor-pointer"
             >
               <Image
                 src={`/images/image${index}.jpg`}
                 alt={`Imagem ${index}`}
                 fill
                 sizes="(max-width: 640px) 100vw, 50vw"
-                className="object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                className="object-cover object-top sm:object-[40%_60%] group-hover:scale-110 transition-transform duration-500"
                 priority={index === 1}
               />
-              {/* Overlay gradient */}
+
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-              {/* Glow effect */}
               <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 shadow-[inset_0_0_40px_rgba(168,85,247,0.3)] transition-all duration-500" />
             </motion.div>
           ))}
+
         </motion.div>
 
-        {/* Texto e Botões */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -107,7 +106,7 @@ export function AboutMe() {
             viewport={{ once: true }}
             className="text-base md:text-lg text-gray-300 leading-relaxed"
           >
-            {/* Parágrafos visíveis sempre */}
+
             <p className="mb-4">
               Formado em Sistemas de Informação pela{" "}
               <span className="text-white font-semibold">Universidade Federal de Ouro Preto</span>, sou{" "}
@@ -124,7 +123,6 @@ export function AboutMe() {
               <span className="text-white font-semibold">aprendizado contínuo</span> para entregar produtos de alta qualidade.
             </p>
 
-            {/* Parágrafos expandíveis */}
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{
@@ -146,7 +144,6 @@ export function AboutMe() {
               </p>
             </motion.div>
 
-            {/* Botão Ver Mais / Ver Menos */}
             <motion.button
               whileHover={{ x: 4 }}
               onClick={() => setIsExpanded(!isExpanded)}
@@ -162,7 +159,6 @@ export function AboutMe() {
             </motion.button>
           </motion.div>
 
-          {/* Botões */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
