@@ -13,8 +13,8 @@ export function TechBackground() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+    let width = (canvas.width = document.documentElement.clientWidth);
+    let height = (canvas.height = document.documentElement.clientHeight);
 
     const chars = Array.from({ length: 40 }, () => ({
       x: Math.random() * width,

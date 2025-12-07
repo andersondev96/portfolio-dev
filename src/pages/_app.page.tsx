@@ -18,7 +18,14 @@ export default function App({
     <>
       <Head>
         <title>Portfolio - Anderson Fernandes</title>
-        <meta name="description" content="Portfolio pessoal do Anderson Fernandes, desenvolvedor web Full Stack." />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
+        <meta
+          name="description"
+          content="Portfolio pessoal do Anderson Fernandes, desenvolvedor web Full Stack."
+        />
       </Head>
       <div className={`${inter.variable} font-sans antialiased`}>
         <AppLayout>
