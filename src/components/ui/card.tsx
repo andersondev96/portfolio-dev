@@ -5,11 +5,13 @@ const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div
+  <article
     ref={ref}
-    role="article"
     className={cn(
-      "rounded-2xl border border-gray-700 bg-gray-900 text-gray-100 shadow-lg transition-all duration-300",
+      "group relative flex flex-col rounded-3xl border border-gray-700/70 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-950",
+      "shadow-lg shadow-black/40 hover:shadow-2xl hover:shadow-purple-900/40",
+      "transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/70",
+      "focus-within:ring-2 focus-within:ring-purple-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-950",
       className
     )}
     {...props}
@@ -23,7 +25,7 @@ const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <header
     ref={ref}
-    className={cn("flex flex-col space-y-3", className)}
+    className={cn("flex flex-col gap-2 px-6 pt-6 md:px-8 md:pt-7", className)}
     {...props}
   />
 ));
@@ -36,7 +38,8 @@ const CardTitle = React.forwardRef<
   <h3
     ref={ref}
     className={cn(
-      "text-xl md:text-2xl font-semibold leading-tight tracking-wide text-purple-300",
+      "text-lg md:text-xl lg:text-2xl font-semibold leading-tight tracking-wide",
+      "text-white drop-shadow-sm",
       className
     )}
     {...props}
@@ -50,7 +53,10 @@ const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("text-sm text-gray-400 leading-relaxed", className)}
+    className={cn(
+      "text-sm md:text-[15px] text-gray-300 leading-relaxed",
+      className
+    )}
     {...props}
   />
 ));
@@ -62,7 +68,7 @@ const CardContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <section
     ref={ref}
-    className={cn("", className)}
+    className={cn("px-6 pb-6 md:px-8 md:pb-7 space-y-3", className)}
     {...props}
   />
 ));
@@ -75,7 +81,7 @@ const CardFooter = React.forwardRef<
   <footer
     ref={ref}
     className={cn(
-      "flex items-center justify-end py-4 border-t border-gray-700 pt-4",
+      "flex items-center justify-end gap-2 px-6 pb-5 pt-4 md:px-8 border-t border-gray-800/80",
       className
     )}
     {...props}

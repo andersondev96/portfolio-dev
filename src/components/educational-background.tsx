@@ -1,8 +1,8 @@
 "use client"
 
 import Image from "next/image"
-import { motion } from "motion/react"
-import { Certificate } from "@phosphor-icons/react"
+import { motion } from "framer-motion"
+import { CertificateIcon } from "@phosphor-icons/react"
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
 
 type Course = {
@@ -82,57 +82,86 @@ export function EducationalBackground() {
   return (
     <section
       id="formations"
-      className="relative w-full bg-gradient-to-b from-[#191a20] to-[#1e1f29] bg-cover bg-center"
-      aria-label="educational-background"
+      className="relative w-full py-16 md:py-24 bg-gradient-to-b from-[#191a20] to-[#1e1f29]"
+      aria-label="Formações acadêmicas"
     >
-      <div className="relative max-w-7xl mx-auto px-6 md:px-12 py-16 flex flex-col items-center text-center text-white">
-        <h2 className="text-4xl md:text-5xl font-extrabold mb-16 drop-shadow-lg">
-          Formações Acadêmicas
-        </h2>
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
+          className="text-center mb-12 md:mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-lg">
+            Formações Acadêmicas
+          </h2>
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: "8rem" }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            viewport={{ once: true }}
+            className="mx-auto mt-4 h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"
+          />
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-5xl items-stretch">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch"
+        >
           {courses.map((course, index) => (
-            <motion.div
-              key={index}
+            <motion.article
+              key={course.institution}
               initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 * index }}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className="cursor-pointer h-full"
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              whileHover={{ y: -6, transition: { duration: 0.25 } }}
             >
-              <Card className="flex flex-col h-full gap-6 p-6 bg-gray-800 text-white shadow-xl rounded-3xl hover:shadow-gray-600/50 transition-shadow duration-300">
-                <CardHeader className="p-0 space-y-2">
-                  <div className="flex items-center gap-3">
-                    <Image
-                      src={course.logo}
-                      alt={`Logo ${course.institution}`}
-                      width={48}
-                      height={48}
-                      className="object-cover"
-                    />
-                    <div>
-                      <CardTitle className="text-lg md:text-xl font-bold leading-tight">
+              <Card className="flex flex-col h-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 border-gray-700/80 hover:border-purple-500/60 shadow-lg hover:shadow-2xl hover:shadow-purple-700/30 rounded-3xl overflow-hidden">
+                <CardHeader className="p-6 pb-4 md:p-8 md:pb-5">
+                  <div className="flex items-center gap-4 md:gap-5">
+                    <div className="relative h-12 w-12 md:h-14 md:w-14 rounded-xl bg-gray-800/70 flex items-center justify-center border border-gray-700/80">
+                      <Image
+                        src={course.logo}
+                        alt={`Logo ${course.institution}`}
+                        fill
+                        sizes="56px"
+                        className="object-contain p-1"
+                      />
+                    </div>
+
+                    <div className="flex-1 text-left">
+                      <CardTitle className="text-lg md:text-xl lg:text-2xl font-semibold text-white">
                         {course.institution}
                       </CardTitle>
-                      <p className="text-sm text-gray-400">{course.title}</p>
-                      <p className="text-xs text-blue-400">{course.period}</p>
+                      <p className="text-xs md:text-sm text-gray-300 mt-1">
+                        {course.title}
+                      </p>
+                      <p className="mt-1 inline-flex items-center text-[11px] md:text-xs font-medium text-blue-300 bg-blue-500/10 px-2.5 py-1 rounded-full border border-blue-500/30">
+                        {course.period}
+                      </p>
                     </div>
                   </div>
                 </CardHeader>
 
-                <CardContent className="p-0 space-y-4 text-left">
-                  <p className="text-sm leading-relaxed text-gray-200">
+                <CardContent className="px-6 pb-6 md:px-8 md:pb-8 pt-0 flex flex-col gap-4 text-left">
+                  <p className="text-sm md:text-base leading-relaxed text-gray-200">
                     {course.description}
                   </p>
 
                   <div>
-                    <p className="text-sm font-semibold mb-2">Principais Conteúdos:</p>
-                    <div className="flex flex-wrap gap-2 text-xs text-white">
-                      {course.topics.map((topic, i) => (
+                    <p className="text-sm md:text-base font-semibold mb-2 text-gray-100">
+                      Principais conteúdos:
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {course.topics.map((topic) => (
                         <span
-                          key={i}
-                          className="bg-blue-700/40 px-2 py-1 rounded-full"
+                          key={topic}
+                          className="text-[11px] md:text-xs px-2.5 py-1 rounded-full bg-purple-900/40 text-purple-100 border border-purple-700/40 whitespace-nowrap"
                         >
                           {topic}
                         </span>
@@ -141,21 +170,23 @@ export function EducationalBackground() {
                   </div>
 
                   {course.certificateUrl && (
-                    <a
-                      href={course.certificateUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center text-sm text-blue-400 hover:underline mt-2"
-                    >
-                      <Certificate size={18} className="mr-2" />
-                      Ver certificado
-                    </a>
+                    <div className="pt-2">
+                      <a
+                        href={course.certificateUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-xs md:text-sm text-blue-300 hover:text-blue-200 hover:underline"
+                      >
+                        <CertificateIcon size={18} weight="bold" />
+                        Ver certificado
+                      </a>
+                    </div>
                   )}
                 </CardContent>
               </Card>
-            </motion.div>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
