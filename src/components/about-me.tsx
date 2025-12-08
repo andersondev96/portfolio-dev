@@ -89,15 +89,23 @@ export function AboutMe() {
           viewport={{ once: true, amount: 0.2 }}
           className="flex flex-col justify-center"
         >
-          <motion.h1
+          <motion.h2
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 text-center"
           >
             Sobre mim
-          </motion.h1>
+          </motion.h2>
+
+          <motion.div
+            initial={{ width: 0, opacity: 0 }}
+            whileInView={{ width: "5rem", opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+            viewport={{ once: true }}
+            className="h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mb-6 shadow-lg mx-auto"
+          />
 
           <motion.div
             initial={{ opacity: 0 }}
