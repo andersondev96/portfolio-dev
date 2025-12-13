@@ -1,19 +1,19 @@
 "use client"
 
-import Image from "next/image"
-import { motion } from "framer-motion"
-import { CertificateIcon } from "@phosphor-icons/react"
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { CertificateIcon } from "@phosphor-icons/react";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 type Course = {
-  logo: string
-  institution: string
-  title: string
-  description: string
-  period: string
-  topics: string[]
-  certificateUrl?: string
-}
+  logo: string;
+  institution: string;
+  title: string;
+  description: string;
+  period: string;
+  topics: string[];
+  certificateUrl?: string;
+};
 
 const courses: Course[] = [
   {
@@ -21,7 +21,7 @@ const courses: Course[] = [
     institution: "USP/Esalq",
     title: "MBA em Engenharia de Software",
     description:
-      "Pós-graduação com foco em desenvolvimento de software, práticas modernas em Cloud, DevOps e Engenharia de Dados.",
+      "Pós-graduação voltada para desenvolvimento de software moderno, Cloud, DevOps e Engenharia de Dados aplicada ao negócio.",
     period: "Mai-2025 • atual",
     topics: [
       "Desenvolvimento de software",
@@ -40,7 +40,7 @@ const courses: Course[] = [
     institution: "Universidade Federal de Ouro Preto (UFOP)",
     title: "Bacharelado em Sistemas de Informação",
     description:
-      "Curso voltado à gestão da informação e desenvolvimento de sistemas, abordando banco de dados, engenharia de software, IA, redes e muito mais.",
+      "Formação em engenharia de software e gestão da informação, com foco em bancos de dados, redes, IA e desenvolvimento de sistemas.",
     period: "Mar-2018 • Set-2023",
     topics: [
       "Gestão da informação",
@@ -64,7 +64,7 @@ const courses: Course[] = [
     institution: "Serviço Nacional de Aprendizagem Comercial (SENAC-MG)",
     title: "Técnico em Informática",
     description:
-      "Curso técnico que ensina fundamentos de algoritmos, SO, arquitetura de computadores, redes e desenvolvimento de software.",
+      "Base sólida em lógica, sistemas operacionais, redes e desenvolvimento de software, com projetos práticos.",
     period: "Nov-2015 • Set-2017",
     topics: [
       "Empreendedorismo",
@@ -76,14 +76,14 @@ const courses: Course[] = [
     ],
     certificateUrl: "#",
   },
-]
+];
 
 export function EducationalBackground() {
   return (
     <section
       id="formations"
       className="relative w-full py-16 md:py-24 bg-gradient-to-b from-[#191a20] to-[#1e1f29]"
-      aria-label="Formações acadêmicas"
+      aria-labelledby="formations-title"
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <motion.div
@@ -93,7 +93,10 @@ export function EducationalBackground() {
           viewport={{ once: true, amount: 0.2 }}
           className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-lg">
+          <h2
+            id="formations-title"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-lg"
+          >
             Formações Acadêmicas
           </h2>
           <motion.div
@@ -103,6 +106,11 @@ export function EducationalBackground() {
             viewport={{ once: true }}
             className="mx-auto mt-4 h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"
           />
+          <p className="mt-6 max-w-3xl mx-auto text-sm md:text-base text-gray-300">
+            Formação alinhada a desenvolvimento de software, arquitetura e
+            dados, conectando base acadêmica sólida com prática em projetos
+            reais.
+          </p>
         </motion.div>
 
         <motion.div
@@ -120,6 +128,7 @@ export function EducationalBackground() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true, amount: 0.2 }}
               whileHover={{ y: -6, transition: { duration: 0.25 } }}
+              className="focus-within:outline-none focus-within:ring-2 focus-within:ring-purple-500 focus-within:ring-offset-2 focus-within:ring-offset-[#191a20] rounded-3xl"
             >
               <Card className="flex flex-col h-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 border-gray-700/80 hover:border-purple-500/60 shadow-lg hover:shadow-2xl hover:shadow-purple-700/30 rounded-3xl overflow-hidden">
                 <CardHeader className="p-6 pb-4 md:p-8 md:pb-5">
@@ -189,5 +198,5 @@ export function EducationalBackground() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
