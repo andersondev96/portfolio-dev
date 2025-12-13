@@ -34,7 +34,7 @@ export function Banner() {
   return (
     <section
       id="home"
-      className="relative w-full h-[500px] sm:h-[600px] md:h-[700px] overflow-hidden flex items-center justify-center text-center"
+      className="relative w-full min-h-[calc(100vh-4rem)] flex items-center justify-center text-center overflow-hidden"
     >
       {/* Fundo gradiente animado */}
       <div className="absolute inset-0 bg-gradient-to-r from-purple-800 via-indigo-700 to-purple-800 animate-gradient bg-[length:400%_400%]" />
@@ -51,7 +51,7 @@ export function Banner() {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-white font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight drop-shadow-2xl"
+          className="text-white font-extrabold text-4xl max-w-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight md:leading-[1.1] drop-shadow-2xl"
         >
           Anderson Fernandes
         </motion.h1>
@@ -82,6 +82,7 @@ export function Banner() {
           className="mt-8"
         >
           <Button
+            aria-label="Ir para seção de contato"
             variant="outline"
             className="w-44 sm:w-52 h-12 text-lg font-semibold text-purple-300 border-2 border-purple-400 hover:bg-purple-500 hover:text-white hover:border-purple-500 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
             onClick={scrollToContact}
@@ -107,7 +108,7 @@ export function Banner() {
               className="text-purple-300 hover:text-purple-100 transition-all duration-300 hover:scale-110 p-2 rounded-lg hover:bg-purple-500/20"
               title={label}
             >
-              <Icon size={28} weight="fill" />
+              <Icon size={28} weight="fill" className="md:size-8" />
             </a>
           ))}
         </motion.div>
