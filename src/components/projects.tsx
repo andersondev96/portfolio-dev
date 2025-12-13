@@ -1,21 +1,23 @@
-'use client'
+"use client";
 
-import Image from "next/image"
-import { motion } from "motion/react"
-import { useState } from "react"
-import { ProjectModal } from "./project-modal"
+import Image from "next/image";
+import { motion } from "motion/react";
+import { useState } from "react";
+import Link from "next/link";
+import { ProjectModal } from "./project-modal";
 
 type Project = {
-  title: string,
-  description: string,
-  url: string,
-  github_repo: string,
-  image: string,
-  badges: string[],
-  technologies: { name: string, icon: string }[],
-}
+  title: string;
+  description: string;
+  url: string;
+  github_repo: string;
+  image: string;
+  badges: string[];
+  technologies: { name: string; icon: string }[];
+  highlight?: boolean;
+};
 
-const projects = [
+const projects: Project[] = [
   {
     title: 'DevStore',
     description: 'E-commerce para venda de produtos digitais',
@@ -29,7 +31,8 @@ const projects = [
       { name: 'TailwindCSS', icon: '/icons/tailwindcss.svg' },
       { name: 'Node.js', icon: '/icons/nodejs.svg' },
       { name: 'Cypress', icon: '/icons/cypress.svg' }
-    ]
+    ],
+    highlight: true,
   },
   {
     title: 'Ignite Call',
@@ -68,7 +71,8 @@ const projects = [
       { name: 'React.js', icon: '/icons/react.svg' },
       { name: 'TypeScript', icon: '/icons/typescript.svg' },
       { name: 'React Router', icon: '/icons/react-router.svg' },
-    ]
+    ],
+    highlight: true,
   },
   {
     title: 'Book Wise',
@@ -94,118 +98,167 @@ const projects = [
       { name: 'React.js', icon: '/icons/react.svg' },
       { name: 'TypeScript', icon: '/icons/typescript.svg' },
       { name: 'Next.js', icon: '/icons/nextjs.svg' },
-     { name: 'TailwindCSS', icon: '/icons/tailwindcss.svg' },
-     { name: "Stripe", icon: '/icons/stripe.svg'}
+      { name: 'TailwindCSS', icon: '/icons/tailwindcss.svg' },
+      { name: "Stripe", icon: '/icons/stripe.svg' }
     ]
   }
 ]
 
 export function Projects() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
     <>
-      <div className="w-full overflow-hidden -mb-20">
+      <div className="w-full overflow-hidden -mb-20" aria-hidden="true">
         <svg
-          className="block w-full h-20 text-[#121217]"
+          className="block w-full h-20 text-[#0c0c12]"
           preserveAspectRatio="none"
           viewBox="0 0 1440 80"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
         >
-          <path
-            d="M0 80L1440 0V80H0Z"
-            fill="currentColor"
-          />
+          <path d="M0 80L1440 0V80H0Z" fill="currentColor" />
         </svg>
       </div>
 
       <section
         id="projects"
-        className="w-full py-20 bg-[#121217] text-white"
+        aria-labelledby="projects-title"
+        className="w-full py-20 bg-[#0c0c12] text-white"
       >
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <motion.h2
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <motion.header
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-extrabold mb-12"
+            className="text-center mb-12"
           >
-            Projetos
-          </motion.h2>
+            <h2
+              id="technologies-title"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-lg"
+            >
+              Projetos
+            </h2>
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: "6rem" }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              viewport={{ once: true }}
+              className="mx-auto mt-4 h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"
+            />
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-12 justify-center">
+            <p className="mt-4 max-w-2xl mx-auto text-sm sm:text-base text-zinc-300">
+              Seleção de projetos que demonstram qualidade de código, experiência do usuário
+              e foco em resultado para empresas e clientes finais.
+            </p>
+          </motion.header>
+
+          <div className="grid gap-8 sm:gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {projects.map((project, index) => (
-              <motion.div
-              key={project.title}
+              <motion.article
+                key={project.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.15, duration: 0.6 }}
+                transition={{ delay: index * 0.08, duration: 0.5 }}
                 viewport={{ once: true }}
-                className="bg-[#1f1f28] p-6 rounded-3xl shadow-xl group hover:shadow-[0_0_30px_8px_rgba(168,85,247,0.3)] hover:scale-[1.04] transition-transform duration-300"
-                >
-                  
-                <div
+                className={`
+                  group flex flex-col rounded-3xl bg-[#181823] border border-white/5
+                  shadow-lg transition-all duration-300
+                  hover:-translate-y-1 hover:shadow-[0_0_28px_6px_rgba(168,85,247,0.22)]
+                  focus-within:ring-2 focus-within:ring-purple-500
+                  focus-within:ring-offset-2 focus-within:ring-offset-[#0c0c12]
+                  ${project.highlight ? "border-purple-500/60" : ""}
+                `}
+              >
+                <button
+                  type="button"
                   onClick={() => setSelectedProject(project)}
-                  rel="noopener noreferrer"
-                  className="block overflow-hidden rounded-2xl cursor-pointer"
-                  aria-label={`Repositório GitHub do projeto ${project.title}`}
+                  className="relative block overflow-hidden rounded-3xl rounded-b-none focus:outline-none"
+                  aria-label={`Ver detalhes do projeto ${project.title}`}
                 >
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    width={500}
-                    height={300}
-                    className="rounded-2xl object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                </div>
-                <div className="flex flex-col mt-4">
-                  <span className="text-xl font-semibold text-purple-400">{project.title}</span>
-                  <p className="text-gray-300 mt-2">{project.description}</p>
-                </div>
-                <div className="flex flex-wrap justify-center gap-3 mt-5 max-w-[260px] mx-auto">
-                  {project.badges.map((badge) => (
-                    <span
-                      key={badge}
-                      className="bg-purple-600 text-white text-xs font-medium px-3 py-1 rounded-full uppercase tracking-wide"
-                    >
-                      {badge}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex gap-3 justify-center mt-5">
-                  {project.technologies.map((tech) => (
-                    <motion.div
-                      key={tech.name}
-                      whileHover={{ scale: 1.3, rotate: 10 }}
-                      transition={{ type: 'spring', stiffness: 300 }}
-                      className="bg-gray-700 p-1 rounded-full"
-                      title={tech.name}
-                    >
+                  <div className="aspect-video w-full bg-zinc-900">
+                    {project.image && (
                       <Image
-                        src={tech.icon}
-                        alt={tech.name}
-                        width={28}
-                        height={28}
-                        className="object-contain"
+                        src={project.image}
+                        alt={project.title}
+                        width={640}
+                        height={360}
+                        loading="lazy"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="h-full w-full object-cover transform transition-transform duration-500 group-hover:scale-105"
                       />
-                    </motion.div>
-                  ))}
+                    )}
+                  </div>
+
+                  <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-zinc-900/85 text-[11px] font-semibold uppercase tracking-wide text-zinc-100 opacity-0 group-hover:opacity-100 transition-opacity">
+                    Ver detalhes
+                  </span>
+                </button>
+
+                <div className="flex flex-1 flex-col justify-between px-5 pb-5 pt-4 sm:px-6 sm:pb-6">
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-semibold text-purple-300">
+                      {project.title}
+                    </h3>
+                    <p className="mt-2 text-sm sm:text-base text-zinc-300">
+                      {project.description}
+                    </p>
+
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {project.badges.map((badge) => (
+                        <span
+                          key={badge}
+                          className="inline-flex items-center rounded-full bg-purple-600/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-white"
+                        >
+                          {badge}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mt-5 flex flex-wrap gap-2 justify-start sm:justify-end">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedProject(project)}
+                      className="inline-flex items-center rounded-lg border border-zinc-700 px-3 py-2 text-xs font-medium text-zinc-100 hover:bg-zinc-800/80 transition-colors"
+                    >
+                      Detalhes
+                    </button>
+
+                    {project.url && (
+                      <Link
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center rounded-lg bg-zinc-800/90 px-3 py-2 text-xs font-medium text-zinc-100 hover:bg-zinc-700 transition-colors"
+                      >
+                        Ver projeto
+                      </Link>
+                    )}
+
+                    <Link
+                      href={project.github_repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center rounded-lg bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 text-xs font-semibold text-white hover:from-purple-500 hover:to-purple-600 transition-colors"
+                    >
+                      Ver código
+                    </Link>
+                  </div>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
         </div>
       </section>
 
       {selectedProject && (
-        <ProjectModal 
+        <ProjectModal
           isOpen={!!selectedProject}
           onClose={() => setSelectedProject(null)}
           project={selectedProject}
         />
       )}
     </>
-  )
+  );
 }
