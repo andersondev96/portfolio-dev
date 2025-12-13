@@ -3,7 +3,11 @@
 import { Button } from "./ui/button";
 import { motion } from "framer-motion";
 import { TechBackground } from "./TechBackground";
-import { EnvelopeIcon, GithubLogoIcon, LinkedinLogoIcon } from "@phosphor-icons/react";
+import {
+  EnvelopeIcon,
+  GithubLogoIcon,
+  LinkedinLogoIcon,
+} from "@phosphor-icons/react";
 
 export function Banner() {
   function scrollToContact() {
@@ -34,69 +38,91 @@ export function Banner() {
   return (
     <section
       id="home"
-      className="relative w-full min-h-[calc(100vh-4rem)] flex items-center justify-center text-center overflow-hidden"
+      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden text-white"
+      aria-labelledby="hero-title"
     >
-      {/* Fundo gradiente animado */}
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-800 via-indigo-700 to-purple-800 animate-gradient bg-[length:400%_400%]" />
 
-      {/* Canvas com símbolos tech */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#3b0b7a] via-[#2b1361] to-[#120725] animate-gradient bg-[length:300%_300%]" />
+
       <TechBackground />
 
-      {/* Overlay com gradiente para melhor legibilidade */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70 backdrop-blur-[2px]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/55 to-black/80" />
 
-      {/* Conteúdo */}
-      <div className="relative z-10 flex flex-col items-center px-4 sm:px-6 md:px-12 max-w-4xl">
+      <div className="relative z-10 max-w-5xl px-4 sm:px-6 md:px-10 flex flex-col items-center text-center gap-6 md:gap-8">
+
+        <motion.span
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-[11px] md:text-xs text-purple-100 border border-purple-400/30 shadow-md"
+        >
+          Disponível para oportunidades em desenvolvimento web e projetos
+          freelancer.
+        </motion.span>
+
         <motion.h1
+          id="hero-title"
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-white font-extrabold text-4xl max-w-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight md:leading-[1.1] drop-shadow-2xl"
+          className="font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight md:leading-[1.1] drop-shadow-2xl"
         >
           Anderson Fernandes
         </motion.h1>
 
-        {/* Linha decorativa animada */}
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: "6rem" }}
           transition={{ delay: 0.4, duration: 0.5 }}
-          className="mt-3 h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full shadow-lg"
+          className="h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full shadow-lg"
         />
 
-        {/* Subtítulo */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-6 text-lg sm:text-xl bg-white/10 px-5 py-3 rounded-xl shadow-md backdrop-blur-sm text-purple-100 max-w-xl border border-purple-400/20"
+          className="flex flex-col gap-3 mt-2"
         >
-          Desenvolvedor Web Full Stack
-        </motion.p>
+          <p className="mx-auto inline-flex items-center justify-center rounded-xl bg-white/10 px-5 py-3 text-sm sm:text-base md:text-lg text-purple-100 border border-purple-400/20 shadow-md backdrop-blur-sm">
+            Desenvolvedor Web Full Stack
+          </p>
+          <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-zinc-200">
+            Ajudo empresas e times a criar aplicações web modernas, escaláveis
+            e fáceis de manter, unindo experiência em front-end, back-end e
+            boas práticas de engenharia de software.
+          </p>
+        </motion.div>
 
-        {/* CTA Principal */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.6 }}
-          className="mt-8"
+          className="mt-2 flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center"
         >
           <Button
+            type="button"
             aria-label="Ir para seção de contato"
-            variant="outline"
-            className="w-44 sm:w-52 h-12 text-lg font-semibold text-purple-300 border-2 border-purple-400 hover:bg-purple-500 hover:text-white hover:border-purple-500 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+            variant="default"
+            className="w-full sm:w-auto px-6 sm:px-8 h-11 sm:h-12 text-sm sm:text-base font-semibold bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 border border-purple-300/40 shadow-lg hover:shadow-xl transition-all duration-300"
             onClick={scrollToContact}
           >
             Entre em contato
           </Button>
+
+          <a
+            href="#projects"
+            className="text-sm sm:text-base text-purple-200 hover:text-purple-100 underline/50 decoration-purple-400/60 hover:decoration-purple-200 transition-colors"
+          >
+            Ver projetos em destaque
+          </a>
         </motion.div>
 
-        {/* Links Sociais */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.0, duration: 0.6 }}
-          className="mt-8 flex gap-4 sm:gap-6"
+          className="mt-4 flex gap-4 sm:gap-5"
+          aria-label="Redes e formas de contato"
         >
           {socialLinks.map(({ icon: Icon, href, label }) => (
             <a
@@ -105,10 +131,9 @@ export function Banner() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="text-purple-300 hover:text-purple-100 transition-all duration-300 hover:scale-110 p-2 rounded-lg hover:bg-purple-500/20"
-              title={label}
+              className="text-purple-300 hover:text-purple-100 transition-transform duration-300 p-2 rounded-lg hover:bg-purple-500/20 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
             >
-              <Icon size={28} weight="fill" className="md:size-8" />
+              <Icon size={26} weight="fill" className="md:size-7" />
             </a>
           ))}
         </motion.div>
