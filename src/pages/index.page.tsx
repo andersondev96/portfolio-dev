@@ -1,6 +1,6 @@
 import { AboutMe } from "@/components/about-me"
 import { Banner } from "@/components/banner"
-import { Contact } from "@/components/Contact"
+import { Contact } from "@/components/contact"
 import { EducationalBackground } from "@/components/educational-background"
 import { Experiences } from "@/components/experiences"
 import { Footer } from "@/components/Footer"
@@ -11,19 +11,19 @@ import { Technologies } from "@/components/technologies"
 export default function Home() {
   return (
     <>
-    <title>Portfolio - Anderson Fernandes </title>
-    <meta name="description" content="Portfolio de Anderson Fernandes, desenvolvedor Web" />
-    <main className="w-full">
-     <Banner />
-     <AboutMe />
-     <Experiences />
-     <EducationalBackground />
-     <Services />
-     <Technologies />
-     <Projects />
-     <Contact />
-     <Footer />
-    </main>
+      <title>Portfolio - Anderson Fernandes </title>
+      <meta name="description" content="Portfolio de Anderson Fernandes, desenvolvedor Web" />
+      <main className="w-full">
+        <Banner />
+        <AboutMe />
+        <Experiences />
+        <EducationalBackground />
+        <Services />
+        <Technologies />
+        <Projects />
+        <Contact />
+        <Footer />
+      </main>
     </>
   )
 }
