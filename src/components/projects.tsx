@@ -15,94 +15,170 @@ type Project = {
   badges: string[];
   technologies: { name: string; icon: string }[];
   highlight?: boolean;
+
+  role?: string;
+  context?: string;
+  features?: string[];
+  results?: string[];
 };
+
 
 const projects: Project[] = [
   {
-    title: 'DevStore',
-    description: 'E-commerce para venda de produtos digitais',
-    url: '',
-    github_repo: 'https://github.com/andersondev96/next13-devstore',
-    image: '/images/devstore.png',
-    badges: ['web', 'e-commerce', 'reactjs', 'nextjs'],
+    title: "DevStore",
+    description: "E-commerce para venda de produtos digitais",
+    url: "",
+    github_repo: "https://github.com/andersondev96/next13-devstore",
+    image: "/images/devstore.png",
+    badges: ["web", "e-commerce", "reactjs", "nextjs"],
     technologies: [
-      { name: 'React.js', icon: '/icons/react.svg' },
-      { name: 'Next.js', icon: '/icons/nextjs.svg' },
-      { name: 'TailwindCSS', icon: '/icons/tailwindcss.svg' },
-      { name: 'Node.js', icon: '/icons/nodejs.svg' },
-      { name: 'Cypress', icon: '/icons/cypress.svg' }
+      { name: "React.js", icon: "/icons/react.svg" },
+      { name: "Next.js", icon: "/icons/nextjs.svg" },
+      { name: "TailwindCSS", icon: "/icons/tailwindcss.svg" },
+      { name: "Node.js", icon: "/icons/nodejs.svg" },
+      { name: "Cypress", icon: "/icons/cypress.svg" },
     ],
     highlight: true,
+    role: "Desenvolvedor full-stack",
+    context: "Projeto completo de e-commerce focado em produtos digitais",
+    features: [
+      "Catálogo de produtos com variações e detalhes individuais",
+      "Carrinho persistente com atualização de quantidades",
+      "Checkout com fluxo guiado e feedback em cada etapa",
+    ],
+    results: [
+      "Focado em mostrar domínio de fluxo de compra",
+      "Demonstra atenção a performance e experiência em dispositivos diferentes",
+    ],
   },
   {
-    title: 'Ignite Call',
-    description: 'Aplicação para agendamento em barbearias',
-    url: 'https://ignite-call-anderson.vercel.app/',
-    github_repo: 'https://github.com/andersondev96/ignite-call',
-    image: '/images/ignite-call.png',
-    badges: ['web', 'agendamento', 'reactjs', 'nextjs'],
+    title: "Ignite Call",
+    description: "Aplicação para agendamento em barbearias",
+    url: "https://ignite-call-anderson.vercel.app/",
+    github_repo: "https://github.com/andersondev96/ignite-call",
+    image: "/images/ignite-call.png",
+    badges: ["web", "agendamento", "reactjs", "nextjs"],
     technologies: [
-      { name: 'React.js', icon: '/icons/react.svg' },
-      { name: 'Next.js', icon: '/icons/nextjs.svg' },
-      { name: 'TailwindCSS', icon: '/icons/tailwindcss.svg' },
-      { name: 'Prisma', icon: '/icons/prisma.svg' }
-    ]
+      { name: "React.js", icon: "/icons/react.svg" },
+      { name: "Next.js", icon: "/icons/nextjs.svg" },
+      { name: "TailwindCSS", icon: "/icons/tailwindcss.svg" },
+      { name: "Prisma", icon: "/icons/prisma.svg" },
+    ],
+    role: "Desenvolvedor full-stack",
+    context: "Aplicação de agendamento integrada a calendário",
+    features: [
+      "Conexão com Google Calendar para evitar horários conflitantes",
+      "Configuração de disponibilidade por dia e faixa de horário",
+      "Fluxo de agendamento simples para o cliente final",
+      "Painel para visualizar compromissos confirmados",
+    ],
+    results: [
+      "Reduz esforço manual de controle de agenda em barbearias",
+      "Evidencia experiência com autenticação, banco de dados e UX de formulários",
+    ],
   },
   {
-    title: 'Ignite Shop',
-    description: 'Loja virtual de produtos digitais',
-    url: '',
-    github_repo: 'https://github.com/andersondev96/ignite-shop',
-    image: '/images/ignite-shop.png',
-    badges: ['web', 'e-commerce', 'reactjs', 'nextjs'],
+    title: "Ignite Shop",
+    description: "Loja virtual de produtos digitais",
+    url: "",
+    github_repo: "https://github.com/andersondev96/ignite-shop",
+    image: "/images/ignite-shop.png",
+    badges: ["web", "e-commerce", "reactjs", "nextjs"],
     technologies: [
-      { name: 'React.js', icon: '/icons/react.svg' },
-      { name: 'Next.js', icon: '/icons/nextjs.svg' },
-    ]
+      { name: "React.js", icon: "/icons/react.svg" },
+      { name: "Next.js", icon: "/icons/nextjs.svg" },
+    ],
+    role: "Desenvolvedor front-end",
+    context: "Loja focada em experiência de compra enxuta",
+    features: [
+      "Galeria de produtos com destaque visual para itens principais",
+      "Carrinho lateral com resumo dinâmico da compra",
+      "Feedback visual claro em cada ação (adicionar, remover, finalizar)",
+    ],
+    results: [
+      "Mostra domínio de layout responsivo e UI focada em conversão",
+      "Ótimo exemplo de fluxo de compra simples para apresentações rápidas",
+    ],
   },
   {
-    title: 'Coffee Delivery',
-    description: 'Aplicação para pedidos de café',
-    url: 'https://coffeedeliveryproject.netlify.app/',
-    github_repo: 'https://github.com/andersondev96/coffee-delivery-react',
-    image: '/images/coffee-delivery.png',
-    badges: ['web', 'e-commerce', 'reactjs'],
+    title: "Coffee Delivery",
+    description: "Aplicação para pedidos de café",
+    url: "https://coffeedeliveryproject.netlify.app/",
+    github_repo: "https://github.com/andersondev96/coffee-delivery-react",
+    image: "/images/coffee-delivery.png",
+    badges: ["web", "e-commerce", "reactjs"],
     technologies: [
-      { name: 'React.js', icon: '/icons/react.svg' },
-      { name: 'TypeScript', icon: '/icons/typescript.svg' },
-      { name: 'React Router', icon: '/icons/react-router.svg' },
+      { name: "React.js", icon: "/icons/react.svg" },
+      { name: "TypeScript", icon: "/icons/typescript.svg" },
+      { name: "React Router", icon: "/icons/react-router.svg" },
     ],
     highlight: true,
+    role: "Desenvolvedor front-end",
+    context: "Aplicação SPA para pedidos rápidos de café",
+    features: [
+      "Listagem de cafés com categorias e descrições",
+      "Carrinho com controle de quantidade e cálculo de total",
+      "Formulário de endereço integrado ao fluxo de checkout",
+    ],
+    results: [
+      "Demonstra domínio de estado global e navegação em SPA",
+      "Exemplo visualmente atrativo para explicar processos de front-end",
+    ],
   },
   {
-    title: 'Book Wise',
-    description: 'Plataforma para recomendações de livros e avaliações de leitores ',
-    url: '',
-    github_repo: 'https://github.com/andersondev96/ignite-book-wise',
-    image: '',
-    badges: ['web', 'reactjs', 'nextjs'],
+    title: "Book Wise",
+    description:
+      "Plataforma para recomendações de livros e avaliações de leitores",
+    url: "",
+    github_repo: "https://github.com/andersondev96/ignite-book-wise",
+    image: "",
+    badges: ["web", "reactjs", "nextjs"],
     technologies: [
-      { name: 'React.js', icon: '/icons/react.svg' },
-      { name: 'TypeScript', icon: '/icons/typescript.svg' },
-      { name: 'Next.js', icon: '/icons/nextjs.svg' },
-    ]
+      { name: "React.js", icon: "/icons/react.svg" },
+      { name: "TypeScript", icon: "/icons/typescript.svg" },
+      { name: "Next.js", icon: "/icons/nextjs.svg" },
+    ],
+    role: "Desenvolvedor full-stack",
+    context: "Plataforma social focada em leitura e reviews",
+    features: [
+      "Catálogo de livros com detalhes e avaliações",
+      "Sistema de notas e comentários por usuário",
+      "Página de perfil com histórico de leituras",
+    ],
+    results: [
+      "Evidencia experiência em produtos com foco em comunidade",
+      "Bom exemplo para discutir modelagem de domínio e UX de conteúdo",
+    ],
   },
   {
-    title: 'Project In Bio',
-    description: 'Micro SaaS para criação do portfolio',
-    url: 'https://micro-saas-rocketseat-project-in-bi.vercel.app',
-    github_repo: 'https://github.com/andersondev96/micro-saas-rocketseat-project-in-bio',
-    image: '/images/projectinbio.png',
-    badges: ['web', 'saas', 'reactjs', 'nextjs', 'stripe', 'tailwind'],
+    title: "Project In Bio",
+    description: "Micro SaaS para criação do portfolio",
+    url: "https://micro-saas-rocketseat-project-in-bi.vercel.app",
+    github_repo:
+      "https://github.com/andersondev96/micro-saas-rocketseat-project-in-bio",
+    image: "/images/projectinbio.png",
+    badges: ["web", "saas", "reactjs", "nextjs", "stripe", "tailwind"],
     technologies: [
-      { name: 'React.js', icon: '/icons/react.svg' },
-      { name: 'TypeScript', icon: '/icons/typescript.svg' },
-      { name: 'Next.js', icon: '/icons/nextjs.svg' },
-      { name: 'TailwindCSS', icon: '/icons/tailwindcss.svg' },
-      { name: "Stripe", icon: '/icons/stripe.svg' }
-    ]
-  }
-]
+      { name: "React.js", icon: "/icons/react.svg" },
+      { name: "TypeScript", icon: "/icons/typescript.svg" },
+      { name: "Next.js", icon: "/icons/nextjs.svg" },
+      { name: "TailwindCSS", icon: "/icons/tailwindcss.svg" },
+      { name: "Stripe", icon: "/icons/stripe.svg" },
+    ],
+    role: "Desenvolvedor full-stack",
+    context: "Micro SaaS para centralizar links e projetos em uma única página",
+    features: [
+      "Criação de página personalizada com links e projetos",
+      "Integração com pagamentos via Stripe para plano premium",
+      "Painel para gerenciamento de links e estatísticas básicas de acesso",
+    ],
+    results: [
+      "Mostra capacidade de estruturar um produto SaaS de ponta a ponta",
+      "Relevante para oportunidades com foco em negócios digitais e monetização",
+    ],
+  },
+];
+
 
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -161,14 +237,15 @@ export function Projects() {
                 transition={{ delay: index * 0.08, duration: 0.5 }}
                 viewport={{ once: true }}
                 className={`
-                  group flex flex-col rounded-3xl bg-[#181823] border border-white/5
-                  shadow-lg transition-all duration-300
-                  hover:-translate-y-1 hover:shadow-[0_0_28px_6px_rgba(168,85,247,0.22)]
-                  focus-within:ring-2 focus-within:ring-purple-500
-                  focus-within:ring-offset-2 focus-within:ring-offset-[#0c0c12]
-                  ${project.highlight ? "border-purple-500/60" : ""}
-                `}
+    group flex flex-col rounded-3xl bg-[#181823] border border-white/5
+    shadow-lg transition-all duration-300
+    hover:-translate-y-1 hover:shadow-[0_0_28px_6px_rgba(168,85,247,0.22)]
+    focus-within:ring-2 focus-within:ring-purple-500
+    focus-within:ring-offset-2 focus-within:ring-offset-[#0c0c12]
+    ${project.highlight ? "border-purple-500/60" : ""}
+  `}
               >
+                {/* imagem + label de detalhes */}
                 <button
                   type="button"
                   onClick={() => setSelectedProject(project)}
@@ -189,12 +266,17 @@ export function Projects() {
                     )}
                   </div>
 
-                  <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <span className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-zinc-900/85 text-[11px] font-semibold uppercase tracking-wide text-zinc-100 opacity-0 group-hover:opacity-100 transition-opacity">
-                    Ver detalhes
-                  </span>
+                  <div className="absolute left-0 right-0 bottom-0 flex items-center justify-between px-3 py-2 bg-gradient-to-t from-black/90 via-black/70 to-transparent">
+                    <span className="text-[11px] font-semibold uppercase tracking-wide text-zinc-100">
+                      Ver detalhes
+                    </span>
+                    <span className="text-[10px] text-zinc-300">
+                      Stack, funcionalidades, contexto
+                    </span>
+                  </div>
                 </button>
 
+                {/* texto + badges + CTAs */}
                 <div className="flex flex-1 flex-col justify-between px-5 pb-5 pt-4 sm:px-6 sm:pb-6">
                   <div>
                     <h3 className="text-lg sm:text-xl font-semibold text-purple-300">
@@ -217,14 +299,6 @@ export function Projects() {
                   </div>
 
                   <div className="mt-5 flex flex-wrap gap-2 justify-start sm:justify-end">
-                    <button
-                      type="button"
-                      onClick={() => setSelectedProject(project)}
-                      className="inline-flex items-center rounded-lg border border-zinc-700 px-3 py-2 text-xs font-medium text-zinc-100 hover:bg-zinc-800/80 transition-colors"
-                    >
-                      Detalhes
-                    </button>
-
                     {project.url && (
                       <Link
                         href={project.url}
@@ -247,6 +321,7 @@ export function Projects() {
                   </div>
                 </div>
               </motion.article>
+
             ))}
           </div>
         </div>
