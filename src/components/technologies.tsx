@@ -70,7 +70,7 @@ export function Technologies() {
   return (
     <section
       id="technologies"
-      className="w-full py-16 md:py-24 bg-gradient-to-b from-[#1a1c23] to-[#121217] text-white"
+      className="w-full pt-16 md:pt-24 pb-24 md:pb-32 bg-gradient-to-b from-[#141620] to-[#0f1118] text-white"
       aria-labelledby="technologies-title"
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">

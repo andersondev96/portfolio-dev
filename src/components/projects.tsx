@@ -185,20 +185,11 @@ export function Projects() {
 
   return (
     <>
-      <div className="w-full overflow-hidden -mb-20" aria-hidden="true">
-        <svg
-          className="block w-full h-20 text-[#0c0c12]"
-          preserveAspectRatio="none"
-          viewBox="0 0 1440 80"
-        >
-          <path d="M0 80L1440 0V80H0Z" fill="currentColor" />
-        </svg>
-      </div>
 
       <section
         id="projects"
         aria-labelledby="projects-title"
-        className="w-full py-20 bg-[#0c0c12] text-white"
+        className="w-full py-20 bg-[#141520] text-white"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <motion.header
@@ -237,13 +228,14 @@ export function Projects() {
                 transition={{ delay: index * 0.08, duration: 0.5 }}
                 viewport={{ once: true }}
                 className={`
-    group flex flex-col rounded-3xl bg-[#181823] border border-white/5
-    shadow-lg transition-all duration-300
-    hover:-translate-y-1 hover:shadow-[0_0_28px_6px_rgba(168,85,247,0.22)]
-    focus-within:ring-2 focus-within:ring-purple-500
-    focus-within:ring-offset-2 focus-within:ring-offset-[#0c0c12]
-    ${project.highlight ? "border-purple-500/60" : ""}
-  `}
+  group flex flex-col rounded-3xl bg-[#181823] border border-white/5
+  shadow-lg transition-all duration-300
+  hover:-translate-y-1 hover:shadow-[0_0_28px_6px_rgba(168,85,247,0.22)]
+  focus-within:ring-2 focus-within:ring-purple-500
+  focus-within:ring-offset-2 focus-within:ring-offset-[#080811]
+  ${project.highlight ? "border-purple-500/60" : ""}
+`}
+
               >
                 {/* imagem + label de detalhes */}
                 <button

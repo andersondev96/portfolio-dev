@@ -64,7 +64,7 @@ export function Services() {
   return (
     <section
       id="services"
-      className="relative w-full py-16 md:py-24 bg-gradient-to-b from-[#191a20] to-[#1e1f29]"
+      className="relative w-full py-16 md:py-24 bg-gradient-to-b from-[#141620] to-[#0f1118]"
       aria-labelledby="services-title"
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">

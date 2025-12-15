@@ -48,7 +48,12 @@ export function Banner() {
 
       <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/55 to-black/80" />
 
-      <div className="relative z-10 max-w-5xl px-4 sm:px-6 md:px-10 flex flex-col items-center text-center gap-6 md:gap-8">
+      <div className="relative z-10 max-w-5xl
+          px-4 sm:px-6 md:px-10
+          flex flex-col items-center text-center
+          gap-6 md:gap-8
+          pt-24 sm:pt-28 md:pt-32
+          pb-16 sm:pb-20 md:pb-24">
 
         <motion.span
           initial={{ opacity: 0, y: -10 }}

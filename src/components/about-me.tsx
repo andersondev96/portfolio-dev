@@ -40,7 +40,7 @@ export function AboutMe() {
   };
 
   return (
-    <section id="about" className="w-full py-16 md:py-24 bg-gradient-to-b from-[#1a1c23] to-[#121217]">
+    <section id="about" className="w-full py-16 md:py-24 bg-gradient-to-b from-[#1c1f29] to-[#11131b]">
       <ResumeModal isOpen={isOpenModal} onClose={() => setIsOpenModal(false)} modalType={modalType} />
 
       <motion.div
