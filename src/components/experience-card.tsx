@@ -28,7 +28,7 @@ export function ExperienceCard({
   period,
   badges,
   roles,
-  defaultOpen
+  defaultOpen,
 }: ExperienceCardProps) {
   const [openRole, setOpenRole] = useState<string>(
     defaultOpen && defaultOpen.length > 0 ? `role-${defaultOpen[0]}` : ""
@@ -43,19 +43,23 @@ export function ExperienceCard({
       transition={{ duration: 0.4 }}
       viewport={{ once: true }}
     >
-      <Card className="flex flex-col h-full gap-5 p-6 md:p-8 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 border border-gray-700 hover:border-purple-500/50 transition-all duration-300 rounded-2xl">
-
-        <CardHeader className="p-0 space-y-4">
+      <Card
+        className="
+          flex flex-col h-full gap-4
+          p-5 md:p-6 lg:p-8
+        "
+      >
+        <CardHeader className="p-0 space-y-3 md:space-y-4">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <CardTitle className="text-2xl md:text-3xl font-bold text-white">
+            <CardTitle className="text-xl md:text-[1.25rem] lg:text-2xl font-bold text-white">
               {company}
             </CardTitle>
-            <p className="text-sm md:text-base text-gray-300 mt-2 leading-relaxed">
+            <p className="text-xs sm:text-sm md:text-[0.9rem] text-gray-300 mt-1.5 md:mt-2 leading-relaxed">
               {description}
             </p>
           </motion.div>
@@ -66,7 +70,7 @@ export function ExperienceCard({
             transition={{ duration: 0.4, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <Badge className="inline-block">
+            <Badge className="inline-block text-[11px] md:text-xs px-2.5 py-1">
               {period}
             </Badge>
           </motion.div>
@@ -75,23 +79,38 @@ export function ExperienceCard({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.25 }}
-            className="flex flex-wrap gap-2"
+            className="flex flex-wrap gap-1.5 md:gap-2"
           >
-            {badges && badges.length > 0 && badges.map((badge, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: 0.25 + index * 0.05 }}
-                className="inline-block text-xs px-2.5 py-1 rounded-full bg-gradient-to-r from-purple-900/40 to-purple-800/40 text-purple-300 font-medium border border-purple-700/50 hover:border-purple-500/70 hover:from-purple-900/60 hover:to-purple-800/60 transition-all duration-200"
-              >
-                {badge}
-              </motion.span>
-            ))}
+            {badges &&
+              badges.length > 0 &&
+              badges.map((badge, index) => (
+                <motion.span
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: 0.25 + index * 0.05 }}
+                  className="
+                    inline-block text-[10px] md:text-xs px-2.5 py-1
+                    rounded-full bg-gradient-to-r from-purple-900/40 to-purple-800/40
+                    text-purple-300 font-medium border border-purple-700/50
+                    hover:border-purple-500/70 hover:from-purple-900/60 hover:to-purple-800/60
+                    transition-all duration-200
+                  "
+                >
+                  {badge}
+                </motion.span>
+              ))}
           </motion.div>
         </CardHeader>
 
-        <CardContent className="p-0 flex-1">
+        <CardContent
+          className="
+            p-0 flex-1
+            mt-2
+            max-h-[260px] md:max-h-[220px] lg:max-h-none
+            overflow-y-auto pr-1
+          "
+        >
           <Accordion.Root
             type="single"
             collapsible
@@ -110,12 +129,12 @@ export function ExperienceCard({
                 <CustomAccordionItem
                   value={`role-${index}`}
                   trigger={
-                    <div className="flex items-center justify-between w-full flex-1 pr-2">
+                    <div className="flex items-center justify-between w-full flex-1 pr-1">
                       <div className="text-left">
-                        <span className="font-semibold text-white text-sm md:text-base">
+                        <span className="font-semibold text-white text-sm md:text-[0.95rem]">
                           {role.title}
                         </span>
-                        <span className="ml-2 text-xs md:text-sm text-gray-400 font-normal">
+                        <span className="ml-2 text-[11px] md:text-xs text-gray-400 font-normal">
                           {role.period}
                         </span>
                       </div>
@@ -123,7 +142,7 @@ export function ExperienceCard({
                   }
                 >
                   <motion.ul
-                    className="text-sm md:text-base text-gray-300 space-y-2 mt-2 ml-4"
+                    className="text-xs sm:text-sm md:text-[0.9rem] text-gray-300 space-y-1.5 mt-2 ml-4"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
@@ -131,12 +150,14 @@ export function ExperienceCard({
                     {role.responsibilities.map((item, i) => (
                       <motion.li
                         key={i}
-                        className="flex items-start gap-3 leading-relaxed"
+                        className="flex items-start gap-2 leading-relaxed"
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: i * 0.05 }}
                       >
-                        <span className="text-purple-400 flex-shrink-0 mt-0.5">•</span>
+                        <span className="text-purple-400 flex-shrink-0 mt-0.5">
+                          •
+                        </span>
                         <span>{item}</span>
                       </motion.li>
                     ))}
