@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+"use client";
+
+import { useEffect, useRef, useState, useCallback, memo } from "react";
 import {
   BrowserIcon,
   DeviceMobileIcon,
@@ -23,20 +25,131 @@ const sections = [
   { id: "#contact", label: "Contato", icon: DeviceMobileIcon },
 ];
 
+const NavLink = memo(({
+  id,
+  label,
+  icon: Icon,
+  isActive,
+  onClick
+}: {
+  id: string;
+  label: string;
+  icon: React.ElementType;
+  isActive: boolean;
+  onClick: (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => void;
+}) => (
+  <a
+    href={id}
+    onClick={(e) => onClick(e, id)}
+    className={`
+      flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium
+      transition-all duration-200
+      ${isActive
+        ? "bg-purple-600/20 text-purple-300 shadow-inner"
+        : "text-gray-300 hover:text-white hover:bg-gray-800/50"
+      }
+      focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50
+    `}
+    aria-current={isActive ? "page" : undefined}
+  >
+    <Icon size={18} weight={isActive ? "fill" : "regular"} />
+    <span>{label}</span>
+  </a>
+));
+
+NavLink.displayName = "NavLink";
+
+const MobileNavLink = memo(({
+  id,
+  label,
+  icon: Icon,
+  isActive,
+  onClick
+}: {
+  id: string;
+  label: string;
+  icon: React.ElementType;
+  isActive: boolean;
+  onClick: (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => void;
+}) => (
+  <a
+    href={id}
+    onClick={(e) => onClick(e, id)}
+    className={`
+      flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium
+      transition-colors duration-200
+      ${isActive
+        ? "bg-purple-600/20 text-purple-300"
+        : "text-gray-300 hover:bg-gray-800"
+      }
+    `}
+    role="menuitem"
+    aria-current={isActive ? "page" : undefined}
+  >
+    <Icon size={20} weight={isActive ? "fill" : "regular"} />
+    {label}
+  </a>
+));
+
+MobileNavLink.displayName = "MobileNavLink";
+
 export function Header() {
   const [activeHash, setActiveHash] = useState("#home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
+  const sectionsCache = useRef<Map<string, HTMLElement>>(new Map());
+  const isScrollingRef = useRef(false);
+
+  useEffect(() => {
+    sections.forEach(({ id }) => {
+      const element = document.querySelector(id) as HTMLElement;
+      if (element) {
+        sectionsCache.current.set(id, element);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: "-80px 0px -80% 0px",
+      threshold: 0,
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      if (isScrollingRef.current) return;
+
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          const hash = `#${entry.target.id}`;
+          setActiveHash(hash);
+          break;
+        }
+      }
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sectionsCache.current.forEach((element) => {
+      observer.observe(element);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     function onScroll() {
       if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
 
       debounceTimeout.current = setTimeout(() => {
+        if (isScrollingRef.current) return;
+
         let currentSection = "#home";
 
         for (const section of sections) {
-          const element = document.querySelector(section.id);
+          const element = sectionsCache.current.get(section.id);
           if (!element) continue;
 
           const rect = element.getBoundingClientRect();
@@ -49,35 +162,41 @@ export function Header() {
       }, 100);
     }
 
-    function onHashChange() {
-      const hash = window.location.hash || "#home";
-      setActiveHash(hash);
-      setMobileMenuOpen(false);
-    }
-
-    window.addEventListener("scroll", onScroll);
-    window.addEventListener("hashchange", onHashChange);
-    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("hashchange", onHashChange);
       if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
     };
   }, []);
 
-  function handleLinkClick(event: React.MouseEvent<HTMLAnchorElement>, hash: string) {
+  const handleLinkClick = useCallback((
+    event: React.MouseEvent<HTMLAnchorElement>,
+    hash: string
+  ) => {
     event.preventDefault();
-    const element = document.querySelector(hash);
+    const element = sectionsCache.current.get(hash);
+
     if (element) {
+      isScrollingRef.current = true;
+
       const yOffset = -80;
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
       window.scrollTo({ top: y, behavior: "smooth" });
       history.pushState(null, "", hash);
       setActiveHash(hash);
       setMobileMenuOpen(false);
+
+      setTimeout(() => {
+        isScrollingRef.current = false;
+      }, 1000);
     }
-  }
+  }, []);
+
+  const toggleMobileMenu = useCallback(() => {
+    setMobileMenuOpen(prev => !prev);
+  }, []);
 
   return (
     <header
@@ -86,38 +205,27 @@ export function Header() {
       aria-label="Menu principal"
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between h-16 px-4 md:px-6 lg:px-8">
-
         {/* Menu Desktop */}
         <nav
-          className="hidden md:flex gap-2 overflow-x-auto py-2 px-1"
+          className="hidden md:flex gap-2 overflow-x-auto py-2 px-1 scrollbar-hide"
           aria-label="Menu de navegação"
         >
-          {sections.map(({ id, label, icon: Icon }) => (
-            <a
+          {sections.map(({ id, label, icon }) => (
+            <NavLink
               key={id}
-              href={id}
-              onClick={(e) => handleLinkClick(e, id)}
-              className={`
-                flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium
-                transition-all duration-200
-                ${activeHash === id
-                  ? "bg-purple-600/20 text-purple-300 shadow-inner"
-                  : "text-gray-300 hover:text-white hover:bg-gray-800/50"
-                }
-                focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50
-              `}
-              aria-current={activeHash === id ? "page" : undefined}
-            >
-              <Icon size={18} weight={activeHash === id ? "fill" : "regular"} />
-              <span>{label}</span>
-            </a>
+              id={id}
+              label={label}
+              icon={icon}
+              isActive={activeHash === id}
+              onClick={handleLinkClick}
+            />
           ))}
         </nav>
 
         {/* Botão Hamburger (mobile) */}
         <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden text-white p-2 rounded-lg hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500"
+          onClick={toggleMobileMenu}
+          className="md:hidden text-white p-2 rounded-lg hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors"
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-menu"
           aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
@@ -126,34 +234,24 @@ export function Header() {
         </button>
       </div>
 
-      {/* Menu Mobile */}
+      {/* Menu Mobile com animação */}
       {mobileMenuOpen && (
         <div
           id="mobile-menu"
-          className="md:hidden bg-gray-900/95 backdrop-blur-md border-t border-gray-800"
+          className="md:hidden bg-gray-900/95 backdrop-blur-md border-t border-gray-800 animate-slideDown"
           role="menu"
           aria-orientation="vertical"
         >
           <nav className="flex flex-col px-4 py-2 space-y-1">
-            {sections.map(({ id, label, icon: Icon }) => (
-              <a
+            {sections.map(({ id, label, icon }) => (
+              <MobileNavLink
                 key={id}
-                href={id}
-                onClick={(e) => handleLinkClick(e, id)}
-                className={`
-                  flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium
-                  transition-colors duration-200
-                  ${activeHash === id
-                    ? "bg-purple-600/20 text-purple-300"
-                    : "text-gray-300 hover:bg-gray-800"
-                  }
-                `}
-                role="menuitem"
-                aria-current={activeHash === id ? "page" : undefined}
-              >
-                <Icon size={20} weight={activeHash === id ? "fill" : "regular"} />
-                {label}
-              </a>
+                id={id}
+                label={label}
+                icon={icon}
+                isActive={activeHash === id}
+                onClick={handleLinkClick}
+              />
             ))}
           </nav>
         </div>
