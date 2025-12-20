@@ -8,13 +8,14 @@ import * as Accordion from "@radix-ui/react-accordion";
 import { CustomAccordionItem } from "./ui/accordion";
 
 type Role = {
-  id?: string;
+  id?: number;
   title: string;
   period: string;
   responsibilities: string[];
 };
 
 type ExperienceCardProps = {
+  id: number;
   company: string;
   description: string;
   period: string;
@@ -28,6 +29,7 @@ const ROLE_ANIMATION_BASE_DELAY = 0.1;
 const RESPONSIBILITY_ANIMATION_DELAY_STEP = 0.05;
 
 export const ExperienceCard = memo(function ExperienceCard({
+  id,
   company,
   description,
   period,
