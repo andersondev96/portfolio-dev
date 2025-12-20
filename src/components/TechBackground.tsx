@@ -22,51 +22,74 @@ type TechChar = {
 export function TechBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animationIdRef = useRef<number | null>(null);
+  const charsRef = useRef<TechChar[]>([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
     const dpr = window.devicePixelRatio || 1;
-
     let width = 0;
     let height = 0;
 
     const resize = () => {
-      const rect = canvas.getBoundingClientRect();
-      width = rect.width;
-      height = rect.height;
+      width = window.innerWidth;
+      height = window.innerHeight;
 
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      initChars();
+    };
+
+    const initChars = () => {
+      const area = width * height;
+      const amount = Math.min(Math.floor(area / 60000), 24);
+
+      charsRef.current = Array.from({ length: amount }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        speedY: 0.2 + Math.random() * 0.5,
+        speedX: (Math.random() - 0.5) * 0.15,
+        char: SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)],
+        size: 14 + Math.random() * 16,
+        opacity: 0.08 + Math.random() * 0.15,
+      }));
     };
 
     resize();
 
-    const amount = 24;
-    const chars: TechChar[] = Array.from({ length: amount }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      speedY: 0.15 + Math.random() * 0.6,
-      speedX: (Math.random() - 0.5) * 0.15,
-      char: SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)],
-      size: 13 + Math.random() * 18,
-      opacity: 0.06 + Math.random() * 0.16,
-    }));
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = "#ffffff";
 
-    const draw = () => {
+    let lastTime = performance.now();
+    const targetFPS = 60;
+    const frameInterval = 1000 / targetFPS;
+
+    const draw = (currentTime: number) => {
+      const deltaTime = currentTime - lastTime;
+
+      if (deltaTime < frameInterval) {
+        animationIdRef.current = requestAnimationFrame(draw);
+        return;
+      }
+
+      lastTime = currentTime - (deltaTime % frameInterval);
+
       ctx.clearRect(0, 0, width, height);
 
-      ctx.textAlign = "center";
-      ctx.fillStyle = "#ffffff";
+      const chars = charsRef.current;
 
-      for (const c of chars) {
+      for (let i = 0; i < chars.length; i++) {
+        const c = chars[i];
+
         ctx.globalAlpha = c.opacity;
-        ctx.font = `${c.size}px "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace`;
+        ctx.font = `${c.size}px "JetBrains Mono", ui-monospace, monospace`;
         ctx.fillText(c.char, c.x, c.y);
 
         c.y += c.speedY;
@@ -80,10 +103,10 @@ export function TechBackground() {
         if (c.x > width + 40) c.x = -40;
       }
 
-      animationIdRef.current = window.requestAnimationFrame(draw);
+      animationIdRef.current = requestAnimationFrame(draw);
     };
 
-    draw();
+    animationIdRef.current = requestAnimationFrame(draw);
 
     const handleResize = () => {
       resize();
@@ -103,7 +126,11 @@ export function TechBackground() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="absolute inset-0 pointer-events-none opacity-60 md:opacity-80"
+      className="absolute inset-0 w-full h-full pointer-events-none opacity-60 md:opacity-80"
+      style={{
+        willChange: "contents",
+        display: "block"
+      }}
     />
   );
 }

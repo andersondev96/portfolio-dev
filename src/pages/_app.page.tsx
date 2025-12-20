@@ -8,6 +8,9 @@ import Head from "next/head";
 const inter = Inter({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  preload: true,
 });
 
 export default function App({
@@ -26,6 +29,8 @@ export default function App({
           name="description"
           content="Portfolio pessoal do Anderson Fernandes, desenvolvedor web Full Stack."
         />
+        <meta name="theme-color" content="#1a1c23" />
+        <link rel="canonical" href="https://andersondev.tech" />
       </Head>
       <div className={`${inter.variable} font-sans antialiased`}>
         <AppLayout>

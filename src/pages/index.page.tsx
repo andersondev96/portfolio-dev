@@ -7,12 +7,15 @@ import { Footer } from "@/components/Footer"
 import { Projects } from "@/components/projects"
 import { Services } from "@/components/services"
 import { Technologies } from "@/components/technologies"
+import Head from "next/head"
 
 export default function Home() {
   return (
     <>
-      <title>Portfolio - Anderson Fernandes </title>
-      <meta name="description" content="Portfolio de Anderson Fernandes, desenvolvedor Web" />
+      <Head>
+        <title>Portfolio - Anderson Fernandes</title>
+        <meta name="description" content="Portfolio de Anderson Fernandes, desenvolvedor Web Full Stack especializado em React, TypeScript e Node.js" />
+      </Head>
       <main className="w-full">
         <Banner />
         <AboutMe />

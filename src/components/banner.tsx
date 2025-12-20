@@ -1,13 +1,14 @@
 "use client";
 
 import { Button } from "./ui/button";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { TechBackground } from "./TechBackground";
 import {
   EnvelopeIcon,
   GithubLogoIcon,
   LinkedinLogoIcon,
 } from "@phosphor-icons/react";
+import Link from "next/link";
 
 export function Banner() {
   function scrollToContact() {
@@ -130,7 +131,7 @@ export function Banner() {
           aria-label="Redes e formas de contato"
         >
           {socialLinks.map(({ icon: Icon, href, label }) => (
-            <a
+            <Link
               key={label}
               href={href}
               target="_blank"
@@ -139,7 +140,7 @@ export function Banner() {
               className="text-purple-300 hover:text-purple-100 transition-transform duration-300 p-2 rounded-lg hover:bg-purple-500/20 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
             >
               <Icon size={26} weight="fill" className="md:size-7" />
-            </a>
+            </Link>
           ))}
         </motion.div>
       </div>
