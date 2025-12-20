@@ -1,8 +1,8 @@
 "use client"
 
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { CertificateIcon } from "@phosphor-icons/react";
+import { motion } from "motion/react";
+import { CertificateIcon } from "@/components/icons";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 type Course = {

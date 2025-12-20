@@ -1,6 +1,6 @@
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronDown } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 export function CustomAccordionItem({
   value,

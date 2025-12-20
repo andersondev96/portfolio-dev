@@ -3,12 +3,26 @@
 import { Button } from "./ui/button";
 import { motion } from "motion/react";
 import { TechBackground } from "./TechBackground";
-import {
-  EnvelopeIcon,
-  GithubLogoIcon,
-  LinkedinLogoIcon,
-} from "@phosphor-icons/react";
+import { EnvelopeIcon, GithubLogoIcon, LinkedinLogoIcon } from "./icons";
 import Link from "next/link";
+
+const socialLinks = [
+  {
+    icon: LinkedinLogoIcon,
+    href: "https://www.linkedin.com/in/anderson-fernandes96",
+    label: "LinkedIn",
+  },
+  {
+    icon: GithubLogoIcon,
+    href: "https://github.com/andersondev96",
+    label: "GitHub",
+  },
+  {
+    icon: EnvelopeIcon,
+    href: "mailto:andersonfferreira96@gmail.com",
+    label: "Email",
+  },
+];
 
 export function Banner() {
   function scrollToContact() {
@@ -18,44 +32,26 @@ export function Banner() {
     }
   }
 
-  const socialLinks = [
-    {
-      icon: LinkedinLogoIcon,
-      href: "https://www.linkedin.com/in/anderson-fernandes96",
-      label: "LinkedIn",
-    },
-    {
-      icon: GithubLogoIcon,
-      href: "https://github.com/andersondev96",
-      label: "GitHub",
-    },
-    {
-      icon: EnvelopeIcon,
-      href: "mailto:andersonfferreira96@gmail.com",
-      label: "Email",
-    },
-  ];
-
   return (
     <section
       id="home"
       className="relative w-full min-h-screen flex items-center justify-center overflow-hidden text-white"
       aria-labelledby="hero-title"
     >
-
       <div className="absolute inset-0 bg-gradient-to-br from-[#3b0b7a] via-[#2b1361] to-[#120725] animate-gradient bg-[length:300%_300%]" />
 
       <TechBackground />
 
       <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/55 to-black/80" />
 
-      <div className="relative z-10 max-w-5xl
+      <div
+        className="relative z-10 max-w-5xl
           px-4 sm:px-6 md:px-10
           flex flex-col items-center text-center
           gap-6 md:gap-8
           pt-24 sm:pt-28 md:pt-32
-          pb-16 sm:pb-20 md:pb-24">
-
+          pb-16 sm:pb-20 md:pb-24"
+      >
         <motion.span
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -93,9 +89,9 @@ export function Banner() {
             Desenvolvedor Web Full Stack
           </p>
           <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-zinc-200">
-            Ajudo empresas e times a criar aplicações web modernas, escaláveis
-            e fáceis de manter, unindo experiência em front-end, back-end e
-            boas práticas de engenharia de software.
+            Ajudo empresas e times a criar aplicações web modernas, escaláveis e
+            fáceis de manter, unindo experiência em front-end, back-end e boas
+            práticas de engenharia de software.
           </p>
         </motion.div>
 

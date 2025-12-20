@@ -12,7 +12,7 @@ import {
   ListIcon,
   XIcon,
   StackIcon,
-} from "@phosphor-icons/react";
+} from "./icons";
 
 const sections = [
   { id: "#home", label: "Home", icon: HouseIcon },

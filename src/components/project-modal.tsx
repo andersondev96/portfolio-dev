@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { GithubLogoIcon, GlobeIcon, XIcon } from "@phosphor-icons/react";
+import { GithubLogoIcon, GlobeIcon, XIcon } from "@/components/icons";
 import * as Dialog from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
 

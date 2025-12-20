@@ -8,15 +8,12 @@ import {
   EnvelopeIcon,
   GithubLogoIcon,
   LinkedinLogoIcon,
-} from "@phosphor-icons/react";
+} from "@/components/icons";
 import { motion } from "motion/react";
 import { ToastContainer, toast } from "react-toastify";
 
 const contactSchema = z.object({
-  name: z
-    .string()
-    .min(1, "Informe seu nome.")
-    .max(100, "Nome muito longo."),
+  name: z.string().min(1, "Informe seu nome.").max(100, "Nome muito longo."),
   email: z
     .string()
     .min(1, "Informe um e-mail.")
@@ -33,6 +30,27 @@ const contactSchema = z.object({
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
+const socialLinks = [
+  {
+    title: "E-mail",
+    icon: EnvelopeIcon,
+    url: "mailto:andersonfferreira96@gmail.com",
+    label: "Enviar e-mail para Anderson",
+  },
+  {
+    title: "LinkedIn",
+    icon: LinkedinLogoIcon,
+    url: "https://www.linkedin.com/in/anderson-fernandes96",
+    label: "Abrir perfil no LinkedIn",
+  },
+  {
+    title: "Github",
+    icon: GithubLogoIcon,
+    url: "https://github.com/andersondev96",
+    label: "Abrir perfil no GitHub",
+  },
+] as const;
+
 export function Contact() {
   const [isSending, setIsSending] = useState(false);
 
@@ -46,27 +64,6 @@ export function Contact() {
     mode: "onSubmit",
     reValidateMode: "onChange",
   });
-
-  const socialLinks = [
-    {
-      title: "E-mail",
-      icon: EnvelopeIcon,
-      url: "mailto:andersonfferreira96@gmail.com",
-      label: "Enviar e-mail para Anderson",
-    },
-    {
-      title: "LinkedIn",
-      icon: LinkedinLogoIcon,
-      url: "https://www.linkedin.com/in/anderson-fernandes96",
-      label: "Abrir perfil no LinkedIn",
-    },
-    {
-      title: "Github",
-      icon: GithubLogoIcon,
-      url: "https://github.com/andersondev96",
-      label: "Abrir perfil no GitHub",
-    },
-  ];
 
   async function onSubmit(data: ContactFormData) {
     try {
@@ -135,7 +132,6 @@ export function Contact() {
           className="mx-auto flex w-full max-w-2xl flex-col gap-5 rounded-2xl bg-[#15151f]/90 px-4 py-6 shadow-lg sm:px-6 sm:py-7 border border-white/5"
           aria-describedby="contact-helper"
         >
-
           <div className="flex flex-col items-stretch gap-1 text-left">
             <label
               htmlFor="name"
@@ -148,10 +144,11 @@ export function Contact() {
               type="text"
               autoComplete="name"
               {...register("name")}
-              className={`w-full rounded-xl border px-3 py-2.5 text-sm sm:text-base text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 bg-[#1f1f28] ${errors.name
-                ? "border-red-500 focus:ring-red-500"
-                : "border-zinc-800 focus:ring-purple-500 focus:border-purple-500"
-                }`}
+              className={`w-full rounded-xl border px-3 py-2.5 text-sm sm:text-base text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 bg-[#1f1f28] ${
+                errors.name
+                  ? "border-red-500 focus:ring-red-500"
+                  : "border-zinc-800 focus:ring-purple-500 focus:border-purple-500"
+              }`}
               placeholder="Como gostaria de ser chamado(a)?"
             />
             {errors.name && (
@@ -173,10 +170,11 @@ export function Contact() {
               type="email"
               autoComplete="email"
               {...register("email")}
-              className={`w-full rounded-xl border px-3 py-2.5 text-sm sm:text-base text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 bg-[#1f1f28] ${errors.email
-                ? "border-red-500 focus:ring-red-500"
-                : "border-zinc-800 focus:ring-purple-500 focus:border-purple-500"
-                }`}
+              className={`w-full rounded-xl border px-3 py-2.5 text-sm sm:text-base text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 bg-[#1f1f28] ${
+                errors.email
+                  ? "border-red-500 focus:ring-red-500"
+                  : "border-zinc-800 focus:ring-purple-500 focus:border-purple-500"
+              }`}
               placeholder="Seu melhor e-mail para contato"
             />
             {errors.email && (
@@ -197,10 +195,11 @@ export function Contact() {
               id="subject"
               type="text"
               {...register("subject")}
-              className={`w-full rounded-xl border px-3 py-2.5 text-sm sm:text-base text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 bg-[#1f1f28] ${errors.subject
-                ? "border-red-500 focus:ring-red-500"
-                : "border-zinc-800 focus:ring-purple-500 focus:border-purple-500"
-                }`}
+              className={`w-full rounded-xl border px-3 py-2.5 text-sm sm:text-base text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 bg-[#1f1f28] ${
+                errors.subject
+                  ? "border-red-500 focus:ring-red-500"
+                  : "border-zinc-800 focus:ring-purple-500 focus:border-purple-500"
+              }`}
               placeholder="Ex.: Parceria, vaga, consultoria, feedback..."
             />
             {errors.subject && (
@@ -221,10 +220,11 @@ export function Contact() {
               id="message"
               rows={5}
               {...register("message")}
-              className={`w-full rounded-xl border px-3 py-2.5 text-sm sm:text-base text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 bg-[#1f1f28] resize-none ${errors.message
-                ? "border-red-500 focus:ring-red-500"
-                : "border-zinc-800 focus:ring-purple-500 focus:border-purple-500"
-                }`}
+              className={`w-full rounded-xl border px-3 py-2.5 text-sm sm:text-base text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 bg-[#1f1f28] resize-none ${
+                errors.message
+                  ? "border-red-500 focus:ring-red-500"
+                  : "border-zinc-800 focus:ring-purple-500 focus:border-purple-500"
+              }`}
               placeholder="Conte brevemente sobre sua ideia, oportunidade ou sugestão."
             />
             {errors.message && (
@@ -250,7 +250,6 @@ export function Contact() {
             >
               {isSending ? "Enviando..." : "Enviar mensagem"}
             </button>
-            <ToastContainer />
           </div>
         </motion.form>
 
@@ -286,6 +285,8 @@ export function Contact() {
           </nav>
         </motion.div>
       </div>
+
+      <ToastContainer position="bottom-right" theme="dark" />
     </section>
   );
 }

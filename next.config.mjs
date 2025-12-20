@@ -1,27 +1,30 @@
+import bundleAnalyzer from '@next/bundle-analyzer';
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ['page.tsx', 'tsx', 'ts', 'js', 'jsx'],
 
-  // Otimizações de compilação
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production' ? {
       exclude: ['error', 'warn'],
     } : false,
   },
 
-  // Compressão automática (já habilitado por padrão no Next.js 16)
   compress: true,
 
-  // Otimização de imagens
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 60,
+    qualities: [75, 85]
   },
 
-  // Headers de segurança e cache
   async headers() {
     return [
       {
@@ -46,7 +49,6 @@ const nextConfig = {
         ],
       },
       {
-        // Cache para assets estáticos
         source: '/static/:path*',
         headers: [
           {
@@ -56,7 +58,6 @@ const nextConfig = {
         ],
       },
       {
-        // Cache para imagens
         source: '/images/:path*',
         headers: [
           {
@@ -68,8 +69,7 @@ const nextConfig = {
     ];
   },
 
-  // Desabilitar source maps em produção para reduzir tamanho do build
   productionBrowserSourceMaps: false,
 };
 
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);

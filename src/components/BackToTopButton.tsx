@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowUpIcon, ArrowDownIcon } from "@phosphor-icons/react";
-import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpIcon, ArrowDownIcon } from "@/components/icons";
+import { motion, AnimatePresence } from "motion/react";
 
 export function BackToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
@@ -10,12 +10,12 @@ export function BackToTopButton() {
 
   useEffect(() => {
     function toggleVisibility() {
-      const atTop = window.pageYOffset < 300;
+      const atTop = window.scrollY < 300;
       setIsAtTop(atTop);
       setIsVisible(true);
     }
 
-    window.addEventListener("scroll", toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility, { passive: true });
     toggleVisibility();
 
     return () => window.removeEventListener("scroll", toggleVisibility);
@@ -36,6 +36,8 @@ export function BackToTopButton() {
 
   const Icon = isAtTop ? ArrowDownIcon : ArrowUpIcon;
   const label = isAtTop ? "Explorar conteúdo" : "Voltar ao topo";
+
+  if (!isVisible) return null;
 
   return (
     <AnimatePresence>

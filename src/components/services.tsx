@@ -1,12 +1,12 @@
 "use client"
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import {
   GlobeHemisphereWestIcon,
   CursorClickIcon,
   SlidersHorizontalIcon,
   ShoppingCartSimpleIcon,
-} from "@phosphor-icons/react";
+} from "@/components/icons";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 const services = [
