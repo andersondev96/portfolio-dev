@@ -1,11 +1,13 @@
+"use client";
+
 import { motion } from "motion/react";
 
 export function Badge({
   children,
-  className = ""
+  className = "",
 }: {
-  children: React.ReactNode
-  className?: string
+  children: React.ReactNode;
+  className?: string;
 }) {
   return (
     <motion.span
@@ -17,5 +19,5 @@ export function Badge({
     >
       {children}
     </motion.span>
-  )
+  );
 }

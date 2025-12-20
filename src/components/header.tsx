@@ -13,6 +13,8 @@ import {
   XIcon,
   StackIcon,
 } from "./icons";
+import { NavLink } from "./ui/navlink/navlink";
+import { MobileNavLink } from "./ui/navlink/mobile-navlink";
 
 const sections = [
   { id: "#home", label: "Home", icon: HouseIcon },
@@ -24,74 +26,6 @@ const sections = [
   { id: "#projects", label: "Projetos", icon: BrowserIcon },
   { id: "#contact", label: "Contato", icon: DeviceMobileIcon },
 ];
-
-const NavLink = memo(({
-  id,
-  label,
-  icon: Icon,
-  isActive,
-  onClick
-}: {
-  id: string;
-  label: string;
-  icon: React.ElementType;
-  isActive: boolean;
-  onClick: (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => void;
-}) => (
-  <a
-    href={id}
-    onClick={(e) => onClick(e, id)}
-    className={`
-      flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium
-      transition-all duration-200
-      ${isActive
-        ? "bg-purple-600/20 text-purple-300 shadow-inner"
-        : "text-gray-300 hover:text-white hover:bg-gray-800/50"
-      }
-      focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50
-    `}
-    aria-current={isActive ? "page" : undefined}
-  >
-    <Icon size={18} weight={isActive ? "fill" : "regular"} />
-    <span>{label}</span>
-  </a>
-));
-
-NavLink.displayName = "NavLink";
-
-const MobileNavLink = memo(({
-  id,
-  label,
-  icon: Icon,
-  isActive,
-  onClick
-}: {
-  id: string;
-  label: string;
-  icon: React.ElementType;
-  isActive: boolean;
-  onClick: (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => void;
-}) => (
-  <a
-    href={id}
-    onClick={(e) => onClick(e, id)}
-    className={`
-      flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium
-      transition-colors duration-200
-      ${isActive
-        ? "bg-purple-600/20 text-purple-300"
-        : "text-gray-300 hover:bg-gray-800"
-      }
-    `}
-    role="menuitem"
-    aria-current={isActive ? "page" : undefined}
-  >
-    <Icon size={20} weight={isActive ? "fill" : "regular"} />
-    {label}
-  </a>
-));
-
-MobileNavLink.displayName = "MobileNavLink";
 
 export function Header() {
   const [activeHash, setActiveHash] = useState("#home");
@@ -128,7 +62,10 @@ export function Header() {
       }
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions
+    );
 
     sectionsCache.current.forEach((element) => {
       observer.observe(element);
@@ -170,32 +107,33 @@ export function Header() {
     };
   }, []);
 
-  const handleLinkClick = useCallback((
-    event: React.MouseEvent<HTMLAnchorElement>,
-    hash: string
-  ) => {
-    event.preventDefault();
-    const element = sectionsCache.current.get(hash);
+  const handleLinkClick = useCallback(
+    (event: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+      event.preventDefault();
+      const element = sectionsCache.current.get(hash);
 
-    if (element) {
-      isScrollingRef.current = true;
+      if (element) {
+        isScrollingRef.current = true;
 
-      const yOffset = -80;
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        const yOffset = -80;
+        const y =
+          element.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
-      window.scrollTo({ top: y, behavior: "smooth" });
-      history.pushState(null, "", hash);
-      setActiveHash(hash);
-      setMobileMenuOpen(false);
+        window.scrollTo({ top: y, behavior: "smooth" });
+        history.pushState(null, "", hash);
+        setActiveHash(hash);
+        setMobileMenuOpen(false);
 
-      setTimeout(() => {
-        isScrollingRef.current = false;
-      }, 1000);
-    }
-  }, []);
+        setTimeout(() => {
+          isScrollingRef.current = false;
+        }, 1000);
+      }
+    },
+    []
+  );
 
   const toggleMobileMenu = useCallback(() => {
-    setMobileMenuOpen(prev => !prev);
+    setMobileMenuOpen((prev) => !prev);
   }, []);
 
   return (

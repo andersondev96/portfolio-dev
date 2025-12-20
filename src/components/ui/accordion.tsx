@@ -1,3 +1,5 @@
+"use client";
+
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronDown } from "lucide-react";
 import { motion } from "motion/react";
@@ -18,12 +20,8 @@ export function CustomAccordionItem({
     >
       <Accordion.Header className="m-0">
         <Accordion.Trigger className="group flex w-full items-center justify-between gap-3 py-3 md:py-4 px-2 md:px-3 text-left text-white font-medium transition-all duration-200 hover:bg-gray-800/50 hover:text-purple-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900">
-          <div className="flex-1">
-            {trigger}
-          </div>
-          <div
-            className="group-data-[state=open]:rotate-180 transition-transform duration-300 flex-shrink-0"
-          >
+          <div className="flex-1">{trigger}</div>
+          <div className="group-data-[state=open]:rotate-180 transition-transform duration-300 flex-shrink-0">
             <ChevronDown className="h-5 w-5 md:h-6 md:w-6 text-purple-400 group-hover:text-purple-300 transition-colors" />
           </div>
         </Accordion.Trigger>
