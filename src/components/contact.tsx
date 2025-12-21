@@ -4,11 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  EnvelopeIcon,
-  GithubLogoIcon,
-  LinkedinLogoIcon,
-} from "@/components/icons";
+import { EnvelopeIcon, GithubLogoIcon, LinkedinLogoIcon } from "@/lib/icons";
 import { motion } from "motion/react";
 import { ToastContainer, toast } from "react-toastify";
 

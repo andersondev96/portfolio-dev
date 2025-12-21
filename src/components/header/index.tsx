@@ -12,9 +12,9 @@ import {
   ListIcon,
   XIcon,
   StackIcon,
-} from "./icons";
-import { NavLink } from "./ui/navlink/navlink";
-import { MobileNavLink } from "./ui/navlink/mobile-navlink";
+} from "../../lib/icons";
+import { NavLink } from "./navlink/navlink";
+import { MobileNavLink } from "./navlink/mobile-navlink";
 
 const sections = [
   { id: "#home", label: "Home", icon: HouseIcon },
@@ -57,6 +57,10 @@ export function Header() {
         if (entry.isIntersecting) {
           const hash = `#${entry.target.id}`;
           setActiveHash(hash);
+
+          if (hash !== window.location.hash) {
+            window.history.replaceState(null, "", hash);
+          }
           break;
         }
       }
@@ -95,6 +99,10 @@ export function Header() {
           }
         }
 
+        if (currentSection !== window.location.hash) {
+          window.history.replaceState(null, "", currentSection);
+        }
+
         setActiveHash(currentSection);
       }, 100);
     }
@@ -120,8 +128,9 @@ export function Header() {
           element.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
         window.scrollTo({ top: y, behavior: "smooth" });
-        history.pushState(null, "", hash);
+
         setActiveHash(hash);
+        history.pushState(null, "", hash);
         setMobileMenuOpen(false);
 
         setTimeout(() => {

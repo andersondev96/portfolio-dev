@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowUpIcon, ArrowDownIcon } from "@/components/icons";
+import { ArrowUpIcon, ArrowDownIcon } from "@/lib/icons";
 import { motion, AnimatePresence } from "motion/react";
 
 export function BackToTopButton() {

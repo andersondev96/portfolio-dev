@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useCallback, useRef, memo } from "react";
-import { DownloadSimpleIcon, XIcon } from "@/components/icons";
+import { DownloadSimpleIcon, XIcon } from "@/lib/icons";
 import * as Dialog from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
 
@@ -11,35 +11,39 @@ type ResumeModalProps = {
   modalType: string;
 };
 
-const ModalButton = memo(({
-  onClick,
-  children,
-  variant = "secondary",
-  icon: Icon,
-  ...props
-}: {
-  onClick?: () => void;
-  children: React.ReactNode;
-  variant?: "primary" | "secondary";
-  icon?: React.ElementType;
-  [key: string]: any;
-}) => (
-  <button
-    onClick={onClick}
-    className={cn(
-      "inline-flex items-center justify-center gap-2 rounded-lg px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 whitespace-nowrap",
-      variant === "primary"
-        ? "text-white bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 shadow-md hover:shadow-lg font-semibold"
-        : "text-zinc-100 bg-zinc-800/80 hover:bg-zinc-700"
-    )}
-    {...props}
-  >
-    {Icon && <Icon size={16} weight="bold" className="flex-shrink-0" />}
-    <span className="hidden xs:inline sm:inline">{children}</span>
-    {/* Ícone apenas em telas muito pequenas */}
-    {Icon && <span className="xs:hidden sm:hidden" aria-label={children as string} />}
-  </button>
-));
+const ModalButton = memo(
+  ({
+    onClick,
+    children,
+    variant = "secondary",
+    icon: Icon,
+    ...props
+  }: {
+    onClick?: () => void;
+    children: React.ReactNode;
+    variant?: "primary" | "secondary";
+    icon?: React.ElementType;
+    [key: string]: any;
+  }) => (
+    <button
+      onClick={onClick}
+      className={cn(
+        "inline-flex items-center justify-center gap-2 rounded-lg px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 whitespace-nowrap",
+        variant === "primary"
+          ? "text-white bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 shadow-md hover:shadow-lg font-semibold"
+          : "text-zinc-100 bg-zinc-800/80 hover:bg-zinc-700"
+      )}
+      {...props}
+    >
+      {Icon && <Icon size={16} weight="bold" className="flex-shrink-0" />}
+      <span className="hidden xs:inline sm:inline">{children}</span>
+      {/* Ícone apenas em telas muito pequenas */}
+      {Icon && (
+        <span className="xs:hidden sm:hidden" aria-label={children as string} />
+      )}
+    </button>
+  )
+);
 
 ModalButton.displayName = "ModalButton";
 
@@ -54,7 +58,8 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
     const originalOverflow = document.body.style.overflow;
     const originalPaddingRight = document.body.style.paddingRight;
 
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
 
     document.body.style.overflow = "hidden";
     document.body.style.paddingRight = `${scrollbarWidth}px`;
@@ -79,41 +84,53 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
     }
   }, []);
 
-  const handleTouchStart = useCallback((event: React.TouchEvent<HTMLDivElement>) => {
-    lastTouchY.current = event.touches[0]?.clientY ?? 0;
-  }, []);
+  const handleTouchStart = useCallback(
+    (event: React.TouchEvent<HTMLDivElement>) => {
+      lastTouchY.current = event.touches[0]?.clientY ?? 0;
+    },
+    []
+  );
 
-  const handleTouchMove = useCallback((event: React.TouchEvent<HTMLDivElement>) => {
-    const target = event.currentTarget;
-    const { scrollTop, scrollHeight, clientHeight } = target;
+  const handleTouchMove = useCallback(
+    (event: React.TouchEvent<HTMLDivElement>) => {
+      const target = event.currentTarget;
+      const { scrollTop, scrollHeight, clientHeight } = target;
 
-    const currentY = event.touches[0]?.clientY ?? 0;
-    const deltaY = lastTouchY.current - currentY;
-    const isScrollingDown = deltaY > 0;
+      const currentY = event.touches[0]?.clientY ?? 0;
+      const deltaY = lastTouchY.current - currentY;
+      const isScrollingDown = deltaY > 0;
 
-    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
-    const isAtTop = scrollTop <= 1;
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
+      const isAtTop = scrollTop <= 1;
 
-    if ((isScrollingDown && isAtBottom) || (!isScrollingDown && isAtTop)) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+      if ((isScrollingDown && isAtBottom) || (!isScrollingDown && isAtTop)) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
 
-    lastTouchY.current = currentY;
-  }, []);
+      lastTouchY.current = currentY;
+    },
+    []
+  );
 
   const handleDownload = useCallback(() => {
-    const link = document.createElement('a');
-    link.href = '/Curriculo_Desenvolvedor.pdf';
-    link.download = 'Curriculo_Anderson_Fernandes.pdf';
+    const link = document.createElement("a");
+    link.href = "/Curriculo_Desenvolvedor.pdf";
+    link.download = "Curriculo_Anderson_Fernandes.pdf";
     link.click();
   }, []);
 
   const handleOpenNewTab = useCallback(() => {
-    window.open('/Curriculo_Desenvolvedor.pdf', '_blank', 'noopener,noreferrer');
+    window.open(
+      "/Curriculo_Desenvolvedor.pdf",
+      "_blank",
+      "noopener,noreferrer"
+    );
   }, []);
 
-  const iframeSrc = isOpen ? "/Curriculo_Desenvolvedor.pdf#toolbar=0&navpanes=0&zoom=100" : "";
+  const iframeSrc = isOpen
+    ? "/Curriculo_Desenvolvedor.pdf#toolbar=0&navpanes=0&zoom=100"
+    : "";
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={(open) => !open && onClose()}>

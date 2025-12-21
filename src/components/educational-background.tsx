@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import { CertificateIcon } from "@/components/icons";
+import { CertificateIcon } from "@/lib/icons";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 type Course = {

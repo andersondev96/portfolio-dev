@@ -3,9 +3,9 @@
 import * as Accordion from "@radix-ui/react-accordion";
 import { memo, useMemo, useState } from "react";
 import { motion } from "motion/react";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Badge } from "./ui/badge";
-import { CustomAccordionItem } from "./ui/accordion";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Badge } from "../ui/badge";
+import { CustomAccordionItem } from "../ui/accordion";
 
 type Role = {
   id?: number;

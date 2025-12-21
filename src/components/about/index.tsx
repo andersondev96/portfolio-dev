@@ -3,33 +3,9 @@
 import { motion, Transition } from "motion/react";
 import { useState, useCallback, memo } from "react";
 import { ResumeModal } from "./resume-modal";
-import { FileTextIcon, CaretDownIcon } from "@/components/icons";
+import { FileTextIcon, CaretDownIcon } from "@/lib/icons";
 import { ProfileImage } from "./profile-image";
-
-const ActionButton = memo(
-  ({
-    label,
-    icon: Icon,
-    onClick,
-  }: {
-    id: string;
-    label: string;
-    icon: React.ElementType;
-    onClick: () => void;
-  }) => (
-    <motion.button
-      whileHover={{ scale: 1.05, y: -2 }}
-      whileTap={{ scale: 0.98 }}
-      onClick={onClick}
-      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-white bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl"
-    >
-      <Icon size={20} weight="fill" className="flex-shrink-0" />
-      <span className="whitespace-nowrap">{label}</span>
-    </motion.button>
-  )
-);
-
-ActionButton.displayName = "ActionButton";
+import { ActionButton } from "./action-button";
 
 const buttons = [
   {
@@ -40,7 +16,7 @@ const buttons = [
   },
 ];
 
-export function AboutMe() {
+export function About() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [modalType, setModalType] = useState<"resume" | "pitch" | "letter">(
     "resume"

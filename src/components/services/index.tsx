@@ -6,7 +6,7 @@ import {
   CursorClickIcon,
   SlidersHorizontalIcon,
   ShoppingCartSimpleIcon,
-} from "@/components/icons";
+} from "@/lib/icons";
 import { ServiceCard } from "./service-card";
 
 type Service = {

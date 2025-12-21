@@ -1,9 +1,13 @@
 "use client";
 
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { motion } from "motion/react";
-import { TechBackground } from "./TechBackground";
-import { EnvelopeIcon, GithubLogoIcon, LinkedinLogoIcon } from "./icons";
+import { TechBackground } from "./tech-background";
+import {
+  EnvelopeIcon,
+  GithubLogoIcon,
+  LinkedinLogoIcon,
+} from "../../lib/icons";
 import Link from "next/link";
 
 const socialLinks = [

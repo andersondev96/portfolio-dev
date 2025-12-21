@@ -1,3 +1,5 @@
+"use client";
+
 import { memo } from "react";
 
 export const MobileNavLink = memo(
