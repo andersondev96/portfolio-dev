@@ -3,15 +3,7 @@
 import { memo } from "react";
 import { motion } from "motion/react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-
-type Service = {
-  id: string;
-  title: string;
-  icon: React.ElementType;
-  tag: string;
-  description: string;
-  bullets: string[];
-};
+import type { Service } from "@/lib/types";
 
 export const ServiceCard = memo(function ServiceCard({
   service,

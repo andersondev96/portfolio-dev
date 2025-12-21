@@ -4,21 +4,7 @@ import { memo, useCallback } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-
-type Project = {
-  title: string;
-  description: string;
-  url: string;
-  github_repo: string;
-  image: string;
-  badges: string[];
-  technologies: { name: string; icon: string }[];
-  highlight?: boolean;
-  role?: string;
-  context?: string;
-  features?: string[];
-  results?: string[];
-};
+import type { Project } from "@/lib/types";
 
 export const ProjectCard = memo(function ProjectCard({
   project,

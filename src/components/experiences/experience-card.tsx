@@ -6,13 +6,7 @@ import { motion } from "motion/react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { CustomAccordionItem } from "../ui/accordion";
-
-type Role = {
-  id?: number;
-  title: string;
-  period: string;
-  responsibilities: string[];
-};
+import type { Role } from "@/lib/types";
 
 type ExperienceCardProps = {
   id: number;

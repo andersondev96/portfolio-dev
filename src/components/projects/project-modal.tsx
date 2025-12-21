@@ -4,20 +4,7 @@ import Image from "next/image";
 import { GithubLogoIcon, GlobeIcon, XIcon } from "@/lib/icons";
 import * as Dialog from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
-
-type Project = {
-  title: string;
-  description: string;
-  url: string;
-  github_repo: string;
-  image: string;
-  badges: string[];
-  technologies: { name: string; icon: string }[];
-  role?: string;
-  context?: string;
-  features?: string[];
-  results?: string[];
-};
+import type { Project } from "@/lib/types";
 
 type ProjectModalProps = {
   isOpen: boolean;
