@@ -108,7 +108,7 @@ export const projects: Project[] = [
       "Plataforma para recomendações de livros e avaliações de leitores",
     url: "",
     github_repo: "https://github.com/andersondev96/ignite-book-wise",
-    image: "",
+    image: "/images/book-wise.png",
     badges: ["web", "reactjs", "nextjs"],
     technologies: [
       { name: "React.js", icon: "/icons/react.svg" },
