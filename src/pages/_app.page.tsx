@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 import { Inter } from "next/font/google";
 import { AppLayout } from "@/layouts/app";
 import { BackToTopButton } from "@/components/back-to-top-button";
