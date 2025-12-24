@@ -1,6 +1,7 @@
-import type { AppProps } from "next/app";
-import { Inter } from "next/font/google";
 import "@/styles/globals.css";
+import type { AppProps } from "next/app";
+import { Analytics } from "@vercel/analytics/next";
+import { Inter } from "next/font/google";
 import { AppLayout } from "@/layouts/app";
 import { BackToTopButton } from "@/components/back-to-top-button";
 import Head from "next/head";
@@ -33,6 +34,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <AppLayout>
           <Component {...pageProps} />
           <BackToTopButton />
+          <Analytics />
         </AppLayout>
       </div>
     </>
