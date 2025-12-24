@@ -74,7 +74,6 @@ const courses: Course[] = [
       "Algoritmos",
       "Desenvolvimento de software",
     ],
-    certificateUrl: "#",
   },
 ];
 
