@@ -33,8 +33,8 @@ export default function App({ Component, pageProps }: AppProps) {
       <div className={`${inter.variable} font-sans antialiased`}>
         <AppLayout>
           <Component {...pageProps} />
-          <BackToTopButton />
           <Analytics />
+          <BackToTopButton />
         </AppLayout>
       </div>
     </>
